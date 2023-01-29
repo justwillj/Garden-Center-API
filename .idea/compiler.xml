@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="garden-center-api" />
         <module name="Garden-Center-API" />
         <module name="Garden-Center-API2" />
       </profile>
@@ -15,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Garden-Center-API" options="-parameters" />
       <module name="Garden-Center-API2" options="-parameters" />
+      <module name="garden-center-api" options="-parameters" />
     </option>
   </component>
 </project>

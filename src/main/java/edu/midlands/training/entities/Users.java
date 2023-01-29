@@ -1,5 +1,7 @@
 package edu.midlands.training.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -96,5 +98,15 @@ public class Users {
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
         '}';
+  }
+
+  @JsonIgnore
+  public static boolean isEmpty() {
+    return Objects.isNull(id) &&
+        Objects.isNull(name) &&
+        Objects.isNull(title) &&
+        Objects.isNull(roles) &&
+        Objects.isNull(email) &&
+        Objects.isNull(password);
   }
 }

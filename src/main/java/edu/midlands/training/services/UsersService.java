@@ -8,4 +8,6 @@ public interface UsersService {
   List<Users>queryUsers(Users users);
   Users getUser(Long id);
 
+  Users addUser(Users user);
+
 }

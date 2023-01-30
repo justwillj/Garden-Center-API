@@ -47,4 +47,13 @@ public class UsersServiceImpl implements UsersService {
     // if we made it down to this pint, we did not find the Pet
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
+
+  @Override
+  public Users addUser(Users user) {
+    try {
+      return usersRepository.save(user);
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+  }
 }

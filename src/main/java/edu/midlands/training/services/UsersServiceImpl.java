@@ -5,6 +5,7 @@ import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UsersRepository;
 import java.util.List;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public Users addUser(Users user) {
     try {
+      for (Users u: usersRepository.findAll()){
+        if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
+          return null;
+        }
+      }
       return usersRepository.save(user);
     } catch (Exception e) {
       throw new ServiceUnavailable(e);

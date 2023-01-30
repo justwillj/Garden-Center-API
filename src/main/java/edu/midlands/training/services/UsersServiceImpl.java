@@ -1,6 +1,8 @@
 package edu.midlands.training.services;
 
 import edu.midlands.training.entities.Users;
+import edu.midlands.training.exceptions.BadDataResponse;
+import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UsersRepository;
@@ -51,15 +53,57 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public Users addUser(Users user) {
-    try {
-      for (Users u: usersRepository.findAll()){
-        if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
-          return null;
-        }
+
+    for (Users u: usersRepository.findAll()){
+      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
+        throw new ConflictData("This email is already in use!");
       }
+    }
+    try {
       return usersRepository.save(user);
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
+  }
+
+  @Override
+  public Users updateUserById(Users user,Long id) {
+    // first, check to make sure the id passed matches the id in the Pet passed
+    if (!user.getId().equals(id)) {
+      throw new BadDataResponse("User ID must match the ID specified in the URL");
+    }
+
+    for (Users u: usersRepository.findAll()){
+      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
+        throw new ConflictData("This email is already in use!");
+      }
+    }
+
+    try {
+      Users userFromDb = usersRepository.findById(id).orElse(null);
+      if (userFromDb != null) {
+        return usersRepository.save(user);
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a Pet with the id: " + id);
+  }
+
+  @Override
+  public void deleteUser(Long id) {
+    try {
+      if (usersRepository.existsById(id)) {
+        usersRepository.deleteById(id);
+        return;
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a Pet with the id: " + id);
   }
 }

@@ -2,6 +2,7 @@ package edu.midlands.training.services;
 
 import edu.midlands.training.entities.Users;
 import java.util.List;
+import org.h2.engine.User;
 
 public interface UsersService {
 
@@ -9,5 +10,9 @@ public interface UsersService {
   Users getUser(Long id);
 
   Users addUser(Users user);
+
+  Users updateUserById(Users user, Long id);
+
+  void deleteUser(Long id);
 
 }

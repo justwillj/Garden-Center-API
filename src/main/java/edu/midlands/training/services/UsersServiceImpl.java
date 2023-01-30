@@ -1,6 +1,7 @@
 package edu.midlands.training.services;
 
 import edu.midlands.training.entities.Users;
+import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UsersRepository;
 import java.util.List;
@@ -21,7 +22,7 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public List<Users> queryUsers(Users users) {
     try {
-      if (Users.isEmpty()) {
+      if (users.isEmpty()) {
         return usersRepository.findAll();
       } else {
         Example<Users> usersExample = Example.of(users);
@@ -34,6 +35,16 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public Users getUser(Long id) {
-    return null;
+    try {
+      Users users = usersRepository.findById(id).orElse(null);
+
+      if (users != null) {
+        return users;
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 }

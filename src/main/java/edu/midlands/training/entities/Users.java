@@ -101,7 +101,7 @@ public class Users {
   }
 
   @JsonIgnore
-  public static boolean isEmpty() {
+  public  boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(name) &&
         Objects.isNull(title) &&

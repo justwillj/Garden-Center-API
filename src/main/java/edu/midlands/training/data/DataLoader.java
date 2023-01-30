@@ -29,5 +29,6 @@ public class DataLoader implements CommandLineRunner {
 
   private void loadUsers(){
     users1 = usersRepository.save(new Users("Justin","Dev","Dev 1","email@gmail.com","thisismypasseord"));
+    users2 = usersRepository.save(new Users("Austin","Bank","ACC","test@gmail.com","testtest"));
   }
 }

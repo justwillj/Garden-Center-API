@@ -11,7 +11,7 @@ public class StringConstants {
   public static final String UNEXPECTED_ERROR = "Unexpected Server Error";
   public static final String VALIDATION_ERROR = "Validation Error";
   public static final String CONTEXT_USERS = "/users";
-  public static final String CONTEXT_VACCINATIONS = "/vaccinations";
+  public static final String CONTEXT_CUSTOMERS = "/customers";
 
   public static final String REQUIRED_FIELD = " is a required field";
   public static final String ID_NOT_FOUND = "You attempted an operation on an id that does not exist in the database";

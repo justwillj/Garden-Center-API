@@ -74,6 +74,9 @@ public class UsersServiceImpl implements UsersService {
     }
 
     for (Users u: usersRepository.findAll()){
+      if (Objects.equals(user.getId(), u.getId()) && Objects.equals(user.getEmail(), u.getEmail())){
+        return usersRepository.save(user);
+      }
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
       }

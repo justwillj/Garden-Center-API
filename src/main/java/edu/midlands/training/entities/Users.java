@@ -37,10 +37,6 @@ public class Users {
   @NotBlank(message = "type is a mandatory field")
   private String password;
 
-  public enum AvailableRoles{
-    EMPLOYEE,
-    ADMIN;
-  }
 
   public Users() {
   }

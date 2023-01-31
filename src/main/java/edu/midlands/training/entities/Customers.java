@@ -1,7 +1,9 @@
 package edu.midlands.training.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -77,5 +79,12 @@ public class Customers {
         ", email='" + email + '\'' +
         ", address=" + address +
         '}';
+  }
+  @JsonIgnore
+  public  boolean isEmpty() {
+    return Objects.isNull(id) &&
+        Objects.isNull(name) &&
+        Objects.isNull(email) &&
+        Objects.isNull(address);
   }
 }

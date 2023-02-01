@@ -4,6 +4,7 @@ package edu.midlands.training.services;
 import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customers;
 import edu.midlands.training.entities.Users;
+import edu.midlands.training.exceptions.BadDataResponse;
 import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
@@ -70,6 +71,35 @@ public class CustomersServiceImpl implements CustomersService {
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
+  }
+
+  @Override
+  public Customers updateCustomerById(Customers customer, Long id) {
+    // first, check to make sure the id passed matches the id in the Pet passed
+    if (!customer.getId().equals(id)) {
+      throw new BadDataResponse("Customer ID must match the ID specified in the URL");
+    }
+
+    for (Customers c: customersRepository.findAll()){
+      if (Objects.equals(customer.getId(), c.getId()) && Objects.equals(customer.getEmail(), c.getEmail())){
+        return customersRepository.save(customer);
+      }
+      if (Objects.equals(c.getEmail().toLowerCase(), customer.getEmail().toLowerCase())){
+        throw new ConflictData("This email is already in use!");
+      }
+    }
+
+    try {
+      Customers customerFromDb = customersRepository.findById(id).orElse(null);
+      if (customerFromDb != null) {
+        return customersRepository.save(customer);
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
   }
 
 

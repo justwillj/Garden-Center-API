@@ -80,15 +80,15 @@ public class CustomersServiceImpl implements CustomersService {
       throw new BadDataResponse("Customer ID must match the ID specified in the URL");
     }
 
-    for (Customers c: customersRepository.findAll()){
-      if (Objects.equals(customer.getId(), c.getId()) && Objects.equals(customer.getEmail(), c.getEmail())){
+    for (Customers c: customersRepository.findAll()) {
+      if (Objects.equals(customer.getId(), c.getId()) && Objects.equals(customer.getEmail(),
+          c.getEmail())) {
         return customersRepository.save(customer);
       }
-      if (Objects.equals(c.getEmail().toLowerCase(), customer.getEmail().toLowerCase())){
+      if (Objects.equals(c.getEmail().toLowerCase(), customer.getEmail().toLowerCase())) {
         throw new ConflictData("This email is already in use!");
       }
     }
-
     try {
       Customers customerFromDb = customersRepository.findById(id).orElse(null);
       if (customerFromDb != null) {

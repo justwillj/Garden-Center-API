@@ -14,21 +14,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern.Flag;
 
 @Entity
 public class Customers {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank(message = "type is a mandatory field")
   private String name;
-
+  @NotBlank(message = "type is a mandatory field")
+  @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Flag.CASE_INSENSITIVE)
   private String email;
 
   @ManyToOne(fetch = FetchType.EAGER)
+  @NotNull
   @JoinColumn
   private Address address;
+
 
   public Customers() {
   }

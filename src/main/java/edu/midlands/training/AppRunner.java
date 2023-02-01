@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AppRunner {
 
   private static Logger logger = LoggerFactory.getLogger(AppRunner.class);
-//test
+
   public static void main(String[] args) {
     logger.info("Application starting up...");
     SpringApplication.run(AppRunner.class, args);

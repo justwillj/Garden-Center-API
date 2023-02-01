@@ -55,8 +55,8 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadAddress(){
-    address1 = addressRepository.save(new Address("1169 Boone Crockett Lane","Olympia","WA",98501));
-    address2 = addressRepository.save(new Address("4021 Cedar Street","Batesville","AR",72501));
+    address1 = addressRepository.save(new Address("1169 Boone Crockett Lane","Olympia","WA","98501"));
+    address2 = addressRepository.save(new Address("4021 Cedar Street","Batesville","AR","72501"));
 
   }
   private void loadCustomers(){

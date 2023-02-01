@@ -1,6 +1,7 @@
 package edu.midlands.training.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Address {
@@ -15,14 +21,15 @@ public class Address {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
+  @NotBlank(message = "type is a mandatory field")
   private String street;
-
+  @NotBlank(message = "type is a mandatory field")
   private String city;
-
+  @NotBlank(message = "type is a mandatory field")
+  @Pattern(regexp = "AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY")
   private String state;
-
-  private Integer zipCode;
+  @NotNull(message="numericField: positive number value is required")
+  private String zipCode;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
   @JsonIgnore
@@ -31,7 +38,7 @@ public class Address {
   public Address() {
   }
 
-  public Address(String street, String city, String state, Integer zipCode) {
+  public Address(String street, String city, String state, String zipCode) {
     this.street = street;
     this.city = city;
     this.state = state;
@@ -70,11 +77,11 @@ public class Address {
     this.state = state;
   }
 
-  public Integer getZipCode() {
+  public String getZipCode() {
     return zipCode;
   }
 
-  public void setZipCode(Integer zipCode) {
+  public void setZipCode(String zipCode) {
     this.zipCode = zipCode;
   }
 
@@ -96,5 +103,15 @@ public class Address {
         ", zipCode=" + zipCode +
         ", customers=" + customers +
         '}';
+  }
+
+  @JsonIgnore
+  public  boolean isEmpty() {
+    return Objects.isNull(id) &&
+        Objects.isNull(street) &&
+        Objects.isNull(city) &&
+        Objects.isNull(state) &&
+        Objects.isNull(zipCode) &&
+        Objects.isNull(customers);
   }
 }

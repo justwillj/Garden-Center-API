@@ -6,15 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Email.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Pattern.Flag;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-public class Users {
+@Table(name = "\"User\"")
+public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -38,10 +39,10 @@ public class Users {
   private String password;
 
 
-  public Users() {
+  public User() {
   }
 
-  public Users(String name, String title, String roles, String email, String password) {
+  public User(String name, String title, String roles, String email, String password) {
     this.name = name.trim();
     this.title = title.trim();
     this.roles = roles.trim();
@@ -99,7 +100,7 @@ public class Users {
 
   @Override
   public String toString() {
-    return "Users{" +
+    return "User{" +
         "id=" + id +
         ", name='" + name + '\'' +
         ", title='" + title + '\'' +

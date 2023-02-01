@@ -1,16 +1,13 @@
 package edu.midlands.training.services;
 
 
-import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customers;
-import edu.midlands.training.entities.Users;
 import edu.midlands.training.exceptions.BadDataResponse;
 import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.CustomersRepository;
-import edu.midlands.training.repositories.UsersRepository;
-import java.util.ArrayList;
+import edu.midlands.training.repositories.UserRepository;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class CustomersServiceImpl implements CustomersService {
   private CustomersRepository customersRepository;
 
   @Autowired
-  private UsersRepository usersRepository;
+  private UserRepository userRepository;
 
   @Override
   public List<Customers> queryCustomers(Customers customers) {

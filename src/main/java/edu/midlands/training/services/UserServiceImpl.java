@@ -1,11 +1,11 @@
 package edu.midlands.training.services;
 
-import edu.midlands.training.entities.Users;
+import edu.midlands.training.entities.User;
 import edu.midlands.training.exceptions.BadDataResponse;
 import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
-import edu.midlands.training.repositories.UsersRepository;
+import edu.midlands.training.repositories.UserRepository;
 import java.util.List;
 import java.util.Objects;
 import org.slf4j.Logger;
@@ -15,21 +15,21 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsersServiceImpl implements UsersService {
+public class UserServiceImpl implements UserService {
 
-  private final Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
+  private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Autowired
-  private UsersRepository usersRepository;
+  private UserRepository userRepository;
 
   @Override
-  public List<Users> queryUsers(Users users) {
+  public List<User> queryUsers(User user) {
     try {
-      if (users.isEmpty()) {
-        return usersRepository.findAll();
+      if (user.isEmpty()) {
+        return userRepository.findAll();
       } else {
-        Example<Users> usersExample = Example.of(users);
-        return usersRepository.findAll(usersExample);
+        Example<User> usersExample = Example.of(user);
+        return userRepository.findAll(usersExample);
       }
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
@@ -37,12 +37,12 @@ public class UsersServiceImpl implements UsersService {
   }
 
   @Override
-  public Users getUser(Long id) {
+  public User getUser(Long id) {
     try {
-      Users users = usersRepository.findById(id).orElse(null);
+      User user = userRepository.findById(id).orElse(null);
 
-      if (users != null) {
-        return users;
+      if (user != null) {
+        return user;
       }
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
@@ -52,30 +52,30 @@ public class UsersServiceImpl implements UsersService {
   }
 
   @Override
-  public Users addUser(Users user) {
+  public User addUser(User user) {
 
-    for (Users u: usersRepository.findAll()){
+    for (User u: userRepository.findAll()){
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
       }
     }
     try {
-      return usersRepository.save(user);
+      return userRepository.save(user);
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
   }
 
   @Override
-  public Users updateUserById(Users user,Long id) {
+  public User updateUserById(User user,Long id) {
     // first, check to make sure the id passed matches the id in the Pet passed
     if (!user.getId().equals(id)) {
       throw new BadDataResponse("User ID must match the ID specified in the URL");
     }
 
-    for (Users u: usersRepository.findAll()){
+    for (User u: userRepository.findAll()){
       if (Objects.equals(user.getId(), u.getId()) && Objects.equals(user.getEmail(), u.getEmail())){
-        return usersRepository.save(user);
+        return userRepository.save(user);
       }
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
@@ -83,9 +83,9 @@ public class UsersServiceImpl implements UsersService {
     }
 
     try {
-      Users userFromDb = usersRepository.findById(id).orElse(null);
+      User userFromDb = userRepository.findById(id).orElse(null);
       if (userFromDb != null) {
-        return usersRepository.save(user);
+        return userRepository.save(user);
       }
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
@@ -98,8 +98,8 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public void deleteUser(Long id) {
     try {
-      if (usersRepository.existsById(id)) {
-        usersRepository.deleteById(id);
+      if (userRepository.existsById(id)) {
+        userRepository.deleteById(id);
         return;
       }
     } catch (Exception e) {

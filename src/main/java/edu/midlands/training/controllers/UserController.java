@@ -7,8 +7,8 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUES
 import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
-import edu.midlands.training.entities.Users;
-import edu.midlands.training.services.UsersService;
+import edu.midlands.training.entities.User;
+import edu.midlands.training.services.UserService;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -29,41 +29,41 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(CONTEXT_USERS)
-public class UsersController {
+public class UserController {
 
-  private final Logger logger = LoggerFactory.getLogger(UsersController.class);
+  private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
   @Autowired
-  private UsersService usersService;
+  private UserService userService;
 
 
   @GetMapping
-  public ResponseEntity<List<Users>> queryUsers(Users users) {
+  public ResponseEntity<List<User>> queryUsers(User users) {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + users.toString());
 
-    return new ResponseEntity<>(usersService.queryUsers(users), HttpStatus.OK);
+    return new ResponseEntity<>(userService.queryUsers(users), HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Users> getUser(@PathVariable Long id) {
+  public ResponseEntity<User> getUser(@PathVariable Long id) {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(usersService.getUser(id), HttpStatus.OK);
+    return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Users> save(@Valid @RequestBody Users user) {
+  public ResponseEntity<User> save(@Valid @RequestBody User user) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
-    return new ResponseEntity<>(usersService.addUser(user), HttpStatus.CREATED);
+    return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
   }
 
   @PutMapping(value = "/{id}")
-  public ResponseEntity<Users> updateUserById(
-      @PathVariable Long id, @Valid @RequestBody Users user) {
+  public ResponseEntity<User> updateUserById(
+      @PathVariable Long id, @Valid @RequestBody User user) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(usersService.updateUserById(user,id), HttpStatus.OK);
+    return new ResponseEntity<>(userService.updateUserById(user,id), HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/{id}")
@@ -71,6 +71,6 @@ public class UsersController {
   public void deleteUser(@PathVariable Long id) {
     logger.info(new Date() + LOGGER_DELETE_REQUEST_RECEIVED + id);
 
-    usersService.deleteUser(id);
+    userService.deleteUser(id);
   }
 }

@@ -2,10 +2,10 @@ package edu.midlands.training.data;
 
 import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customers;
-import edu.midlands.training.entities.Users;
+import edu.midlands.training.entities.User;
 import edu.midlands.training.repositories.AddressRepository;
 import edu.midlands.training.repositories.CustomersRepository;
-import edu.midlands.training.repositories.UsersRepository;
+import edu.midlands.training.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class DataLoader implements CommandLineRunner {
 
   private final Logger logger = LoggerFactory.getLogger(DataLoader.class);
   @Autowired
-  private UsersRepository usersRepository;
+  private UserRepository userRepository;
 
   @Autowired
   private CustomersRepository customersRepository;
@@ -27,9 +27,9 @@ public class DataLoader implements CommandLineRunner {
 
 
 
-  private Users users1;
-  private Users users2;
-  private Users users3;
+  private User user1;
+  private User user2;
+  private User user3;
 
   private Customers customer1;
   private Customers customer2;
@@ -50,8 +50,8 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadUsers(){
-    users1 = usersRepository.save(new Users("Justin","Dev","EMPLOYEE","email@gmail.com","thisismypasseord"));
-    users2 = usersRepository.save(new Users("Austin","Bank","ADMIN","test@gmail.com","testtest"));
+    user1 = userRepository.save(new User("Justin","Dev","EMPLOYEE","email@gmail.com","thisismypasseord"));
+    user2 = userRepository.save(new User("Austin","Bank","ADMIN","test@gmail.com","testtest"));
   }
 
   private void loadAddress(){

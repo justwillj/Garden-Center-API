@@ -102,5 +102,20 @@ public class CustomersServiceImpl implements CustomersService {
     throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
   }
 
+  @Override
+  public void deleteCustomer(Long id) {
+    try {
+      if (customersRepository.existsById(id)) {
+        customersRepository.deleteById(id);
+        return;
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
+  }
+
 
 }

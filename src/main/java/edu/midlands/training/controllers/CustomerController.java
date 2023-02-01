@@ -6,8 +6,8 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUES
 import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
-import edu.midlands.training.entities.Customers;
-import edu.midlands.training.services.CustomersService;
+import edu.midlands.training.entities.Customer;
+import edu.midlands.training.services.CustomerService;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -26,43 +26,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * This controller has all the CRUD methods for the customer entity
+ */
 @RestController
 @RequestMapping(CONTEXT_CUSTOMERS)
-public class CustomersController {
+public class CustomerController {
 
-  private final Logger logger = LoggerFactory.getLogger(CustomersController.class);
+  private final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
   @Autowired
-  private CustomersService customersService;
+  private CustomerService customerService;
 
-
+  /**
+   * give you all the customers if you pass a null user or user matching an example with non-null customer
+   *
+   * @param customer object which can have null or non-null fields, returns status 200
+   * @return List of customers
+   */
   @GetMapping
-  public ResponseEntity<List<Customers>> queryCustomers(Customers customers) {
-    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + customers.toString());
+  public ResponseEntity<List<Customer>> queryCustomers(Customer customer) {
+    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + customer.toString());
 
-    return new ResponseEntity<>(customersService.queryCustomers(customers), HttpStatus.OK);
+    return new ResponseEntity<>(customerService.queryCustomers(customer), HttpStatus.OK);
   }
 
+  /**
+   * Gets customer by id.
+   *
+   * @param id the customer's id from the path variable
+   * @return the Customer with said id
+   */
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Customers> getCustomer(@PathVariable Long id) {
+  public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(customersService.getCustomer(id), HttpStatus.OK);
+    return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Customers> save(@Valid @RequestBody Customers customer) {
+  public ResponseEntity<Customer> save(@Valid @RequestBody Customer customer) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
-    return new ResponseEntity<>(customersService.addCustomer(customer), HttpStatus.CREATED);
+    return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.CREATED);
   }
 
   @PutMapping(value = "/{id}")
-  public ResponseEntity<Customers> updateCustomerById(
-      @PathVariable Long id, @Valid @RequestBody Customers customer) {
+  public ResponseEntity<Customer> updateCustomerById(
+      @PathVariable Long id, @Valid @RequestBody Customer customer) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(customersService.updateCustomerById(customer,id), HttpStatus.OK);
+    return new ResponseEntity<>(customerService.updateCustomerById(customer,id), HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/{id}")
@@ -70,6 +84,6 @@ public class CustomersController {
   public void deleteCustomer(@PathVariable Long id) {
     logger.info(new Date() + LOGGER_DELETE_REQUEST_RECEIVED + id);
 
-    customersService.deleteCustomer(id);
+    customerService.deleteCustomer(id);
   }
 }

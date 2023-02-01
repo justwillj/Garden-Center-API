@@ -1,10 +1,10 @@
 package edu.midlands.training.data;
 
 import edu.midlands.training.entities.Address;
-import edu.midlands.training.entities.Customers;
+import edu.midlands.training.entities.Customer;
 import edu.midlands.training.entities.User;
 import edu.midlands.training.repositories.AddressRepository;
-import edu.midlands.training.repositories.CustomersRepository;
+import edu.midlands.training.repositories.CustomerRepository;
 import edu.midlands.training.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class DataLoader implements CommandLineRunner {
   private UserRepository userRepository;
 
   @Autowired
-  private CustomersRepository customersRepository;
+  private CustomerRepository customerRepository;
 
   @Autowired
   private AddressRepository addressRepository;
@@ -31,9 +31,9 @@ public class DataLoader implements CommandLineRunner {
   private User user2;
   private User user3;
 
-  private Customers customer1;
-  private Customers customer2;
-  private Customers customer3;
+  private Customer customer1;
+  private Customer customer2;
+  private Customer customer3;
 
 
   private Address address1;
@@ -60,9 +60,9 @@ public class DataLoader implements CommandLineRunner {
 
   }
   private void loadCustomers(){
-    customer1 = customersRepository.save(new Customers("John","john@gmail.com",address1));
-    customer2 = customersRepository.save(new Customers("David","david@gmail.com",address2));
-    customer3 = customersRepository.save(new Customers("Alex","alex@gmail.com",address1));
+    customer1 = customerRepository.save(new Customer("John","john@gmail.com",address1));
+    customer2 = customerRepository.save(new Customer("David","david@gmail.com",address2));
+    customer3 = customerRepository.save(new Customer("Alex","alex@gmail.com",address1));
 
   }
 }

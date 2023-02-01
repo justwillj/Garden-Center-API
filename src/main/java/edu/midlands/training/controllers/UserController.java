@@ -42,7 +42,7 @@ public class UserController {
   /**
    * give you all the users if you pass a null user or user matching an example with non-null user
    *
-   * @param users user object which can have null or non-null fields, returns status 200
+   * @param users object which can have null or non-null fields, returns status 200
    * @return List of users
    */
   @GetMapping

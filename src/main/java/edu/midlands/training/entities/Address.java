@@ -9,11 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Address {
@@ -34,7 +32,7 @@ public class Address {
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
   @JsonIgnore
-  private Set<Customers> customers;
+  private Set<Customer> customers;
 
   public Address() {
   }
@@ -86,11 +84,11 @@ public class Address {
     this.zipCode = zipCode;
   }
 
-  public Set<Customers> getCustomers() {
+  public Set<Customer> getCustomers() {
     return customers;
   }
 
-  public void setCustomers(Set<Customers> customers) {
+  public void setCustomers(Set<Customer> customers) {
     this.customers = customers;
   }
 

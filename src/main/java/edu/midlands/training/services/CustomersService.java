@@ -11,4 +11,6 @@ public interface CustomersService {
 
   Customers getCustomer(Long id);
 
+  Customers addCustomer(Customers customer);
+
 }

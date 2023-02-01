@@ -4,12 +4,14 @@ package edu.midlands.training.services;
 import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customers;
 import edu.midlands.training.entities.Users;
+import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.CustomersRepository;
 import edu.midlands.training.repositories.UsersRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -51,6 +53,23 @@ public class CustomersServiceImpl implements CustomersService {
     }
     // if we made it down to this pint, we did not find the Pet
     throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
+  }
+
+  @Override
+  public Customers addCustomer(Customers customer) {
+
+    for (Customers c: customersRepository.findAll()){
+
+      if (Objects.equals(c.getEmail().toLowerCase(), customer.getEmail().toLowerCase())){
+        throw new ConflictData("This email is already in use!");
+      }
+    }
+
+    try {
+      return customersRepository.save(customer);
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
   }
 
 

@@ -22,6 +22,14 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private UserRepository userRepository;
 
+
+  /**
+   * This method will take a user as an optional parameter. If the user is given then it will create
+   * a query by example. If nothing is given then we will get all users.
+   *
+   * @param user - any provided fields will be converted to an exact match AND query
+   * @return a list of users that match the query, if not supplied then all the users in the database
+   */
   @Override
   public List<User> queryUsers(User user) {
     try {
@@ -36,6 +44,12 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+/**
+ * Lookup a User by its id.
+ *
+ * @param id - the id to lookup
+ * @return the user that matches the id
+ */
   @Override
   public User getUser(Long id) {
     try {
@@ -51,9 +65,16 @@ public class UserServiceImpl implements UserService {
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 
+  /**
+   * Adds a new User to the database.
+   *
+   * @param user - the user that will be added to the database.
+   * @return the new user if the required fields are inputted correctly
+   */
   @Override
   public User addUser(User user) {
 
+    //Checks to see if the email is already taken and if so throws an exceptions
     for (User u: userRepository.findAll()){
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
@@ -66,6 +87,13 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  /**
+   * Update an existing User in the database.
+   *
+   * @param id  - the id of the user to update.
+   * @param user - the User information to update.
+   * @return the updated user if done correctly
+   */
   @Override
   public User updateUserById(User user,Long id) {
     // first, check to make sure the id passed matches the id in the Pet passed
@@ -73,15 +101,17 @@ public class UserServiceImpl implements UserService {
       throw new BadDataResponse("User ID must match the ID specified in the URL");
     }
 
+    //If the id of the user we are updating and the endpoint id match, allows the user to keep its
+    //current email when updating
     for (User u: userRepository.findAll()){
       if (Objects.equals(user.getId(), u.getId()) && Objects.equals(user.getEmail(), u.getEmail())){
         return userRepository.save(user);
       }
+      //Checks to see if the email is already taken and if so throws an exceptions
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
       }
     }
-
     try {
       User userFromDb = userRepository.findById(id).orElse(null);
       if (userFromDb != null) {
@@ -90,11 +120,15 @@ public class UserServiceImpl implements UserService {
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
-
-    // if we made it down to this pint, we did not find the Pet
+    // if we made it down to this pint, we did not find the User
     throw new ResourceNotFound("Could not locate a Pet with the id: " + id);
   }
 
+  /**
+   * Delete a User from the database.
+   *
+   * @param id - the id of the user to be deleted.
+   */
   @Override
   public void deleteUser(Long id) {
     try {
@@ -107,6 +141,6 @@ public class UserServiceImpl implements UserService {
     }
 
     // if we made it down to this pint, we did not find the Pet
-    throw new ResourceNotFound("Could not locate a Pet with the id: " + id);
+    throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 }

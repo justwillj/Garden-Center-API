@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,13 @@ public class CustomersController {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + customers.toString());
 
     return new ResponseEntity<>(customersService.queryCustomers(customers), HttpStatus.OK);
+  }
+
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Customers> getCustomer(@PathVariable Long id) {
+    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
+
+    return new ResponseEntity<>(customersService.getCustomer(id), HttpStatus.OK);
   }
 
 

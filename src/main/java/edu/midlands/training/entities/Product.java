@@ -126,7 +126,6 @@ public class Product {
         Objects.isNull(type) &&
         Objects.isNull(name) &&
         Objects.isNull(description) &&
-        Objects.isNull(manufacturer) &&
-        Objects.isNull(price);
+        Objects.isNull(manufacturer);
   }
 }

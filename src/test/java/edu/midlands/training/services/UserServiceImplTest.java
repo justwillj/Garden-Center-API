@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Example;
 
 class UserServiceImplTest {
@@ -49,5 +51,20 @@ class UserServiceImplTest {
   void queryAllUsers() {
     List<User> results = userServiceImpl.queryUsers(new User());
     assertEquals(testList,results);
+  }
+
+  @Test
+  void queryAllPetsWithSample() {
+    List<User> results = userServiceImpl.queryUsers(testUser);
+    assertEquals(testList,results);
+  }
+
+  @Test
+  void queryAllPetsDBError() {
+    when(userRepository.findAll()).thenThrow(EmptyResultDataAccessException.class);
+
+    assertThrows(ServiceUnavailable.class,
+        () -> userServiceImpl.queryUsers(new User()));
+
   }
 }

@@ -122,5 +122,24 @@ public class ProductServiceImpl implements ProductService {
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 
+  /**
+   * Delete a Product from the database.
+   *
+   * @param id - the id of the product to be deleted.
+   */
+  @Override
+  public void deleteProduct(Long id) {
+      try {
+        if (productRepository.existsById(id)) {
+          productRepository.deleteById(id);
+          return;
+        }
+      } catch (Exception e) {
+        throw new ServiceUnavailable(e);
+      }
+
+      // if we made it down to this pint, we did not find the Pet
+      throw new ResourceNotFound("Could not locate a Product with the id: " + id);
+    }
 
 }

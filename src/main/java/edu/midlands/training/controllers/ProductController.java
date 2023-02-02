@@ -6,6 +6,7 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_REC
 
 import edu.midlands.training.entities.Customer;
 import edu.midlands.training.entities.Product;
+import edu.midlands.training.entities.User;
 import edu.midlands.training.services.CustomerService;
 import edu.midlands.training.services.ProductService;
 import java.util.Date;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,4 +44,16 @@ public class ProductController {
   }
 
 
+  /**
+   * Gets product by id.
+   *
+   * @param id the product's id from the path variable
+   * @return the Product with said id
+   */
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
+
+    return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
+  }
 }

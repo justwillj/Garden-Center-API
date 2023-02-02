@@ -25,19 +25,20 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "title"+ REQUIRED_FIELD)
+  @NotBlank(message = "sku"+ REQUIRED_FIELD)
   private String sku;
 
-  @NotBlank(message = "title"+ REQUIRED_FIELD)
+  @NotBlank(message = "type"+ REQUIRED_FIELD)
   private String type;
-
-  @NotBlank(message = "title"+ REQUIRED_FIELD)  private String name;
+  @NotBlank(message = "name"+ REQUIRED_FIELD)
+  private String name;
+  @NotBlank(message = "description"+ REQUIRED_FIELD)
   private String description;
 
-  @NotBlank(message = "title"+ REQUIRED_FIELD)
+  @NotBlank(message = "manufacturer"+ REQUIRED_FIELD)
   private String manufacturer;
 
-  @NotNull(message = "title"+ REQUIRED_FIELD)
+  @NotNull(message = "price"+ REQUIRED_FIELD)
   @DecimalMin(value = "0.00")
   private BigDecimal price;
 

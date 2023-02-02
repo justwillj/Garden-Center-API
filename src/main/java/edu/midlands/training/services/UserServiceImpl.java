@@ -6,6 +6,7 @@ import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UserRepository;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import org.slf4j.Logger;
@@ -73,18 +74,26 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   public User addUser(User user) {
+    String[] employee = new String[]{"EMPLOYEE"};
+    String[] admin = new String[]{"ADMIN"};
 
-    //Checks to see if the email is already taken and if so throws an exceptions
-    for (User u: userRepository.findAll()){
-      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
-        throw new ConflictData("This email is already in use!");
+    if (!Arrays.equals(user.getRoles(), employee)){
+      if (!Arrays.equals(user.getRoles(), admin)){
+        throw new ConflictData("Please use a valid role!");
       }
     }
-    try {
-      return userRepository.save(user);
-    } catch (Exception e) {
-      throw new ServiceUnavailable(e);
-    }
+      //Checks to see if the email is already taken and if so throws an exceptions
+      for (User u : userRepository.findAll()) {
+        if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
+          throw new BadDataResponse("This email is already in use!");
+        }
+      }
+      try {
+        return userRepository.save(user);
+      } catch (Exception e) {
+        throw new ServiceUnavailable(e);
+      }
+
   }
 
   /**
@@ -99,6 +108,14 @@ public class UserServiceImpl implements UserService {
     // first, check to make sure the id passed matches the id in the Pet passed
     if (!user.getId().equals(id)) {
       throw new BadDataResponse("User ID must match the ID specified in the URL");
+    }
+    String[] employee = new String[]{"EMPLOYEE"};
+    String[] admin = new String[]{"ADMIN"};
+
+    if (!Arrays.equals(user.getRoles(), employee)){
+      if (!Arrays.equals(user.getRoles(), admin)){
+        throw new BadDataResponse("Please use a valid role!");
+      }
     }
 
     //If the id of the user we are updating and the endpoint id match, allows the user to keep its

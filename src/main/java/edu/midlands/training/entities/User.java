@@ -1,6 +1,9 @@
 package edu.midlands.training.entities;
 
+import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern.Flag;
 import org.hibernate.validator.constraints.Length;
 
@@ -20,32 +23,33 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "name"+ REQUIRED_FIELD)
   private String name;
 
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "title"+ REQUIRED_FIELD)
   private String title;
 
-  @NotBlank(message = "type is a mandatory field")
-  @Pattern(regexp = "EMPLOYEE|ADMIN")
-  private String roles;
+//  @NotBlank(message = "roles"+ REQUIRED_FIELD)
+//  @Pattern(regexp = "EMPLOYEE|ADMIN")
+  @NotEmpty
+  private String [] roles;
 
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "email"+ REQUIRED_FIELD)
   @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Flag.CASE_INSENSITIVE)
   private String email;
 
   @Length(min = 8)
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "password"+ REQUIRED_FIELD)
   private String password;
 
 
   public User() {
   }
 
-  public User(String name, String title, String roles, String email, String password) {
+  public User(String name, String title, String [] roles, String email, String password) {
     this.name = name.trim();
     this.title = title.trim();
-    this.roles = roles.trim();
+    this.roles = roles;
     this.email = email.trim();
     this.password = password.trim();
   }
@@ -74,12 +78,12 @@ public class User {
     this.title = title.trim();
   }
 
-  public String getRoles() {
-    return roles.trim();
+  public String [] getRoles() {
+    return roles;
   }
 
-  public void setRoles(String roles) {
-    this.roles = roles.trim();
+  public void setRoles(String roles []) {
+    this.roles = roles;
   }
 
   public String getEmail() {

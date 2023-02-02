@@ -2,6 +2,7 @@ package edu.midlands.training.entities;
 
 import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -9,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 public class Product {
@@ -29,6 +34,7 @@ public class Product {
   @NotBlank(message = "title"+ REQUIRED_FIELD)
   private String manufacturer;
 
+  @NotNull(message = "title"+ REQUIRED_FIELD)
   private double price;
 
   public Product() {

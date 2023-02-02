@@ -4,11 +4,14 @@ import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -35,13 +38,14 @@ public class Product {
   private String manufacturer;
 
   @NotNull(message = "title"+ REQUIRED_FIELD)
-  private double price;
+  @DecimalMin(value = "0.00")
+  private BigDecimal price;
 
   public Product() {
   }
 
   public Product(String sku, String type, String name, String description, String manufacturer,
-      double price) {
+      BigDecimal price) {
     this.sku = sku;
     this.type = type;
     this.name = name;
@@ -98,11 +102,11 @@ public class Product {
     this.manufacturer = manufacturer;
   }
 
-  public double getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
-  public void setPrice(double price) {
+  public void setPrice(BigDecimal price) {
     this.price = price;
   }
 

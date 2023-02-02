@@ -8,6 +8,7 @@ import edu.midlands.training.repositories.AddressRepository;
 import edu.midlands.training.repositories.CustomerRepository;
 import edu.midlands.training.repositories.ProductRepository;
 import edu.midlands.training.repositories.UserRepository;
+import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,12 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadProducts(){
-    product1 = productRepository.save(new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",126.10));
-    product2 = productRepository.save(new Product("KS93528TUT","Pants","Blue Jeans","The best jeans ever!","Levi's",56.99));
-    product3 = productRepository.save(new Product("WR-524927","Shirt","Long Sleeve","The worlds greatest shirt","Adidas",29.56));
+    product1 = productRepository.save(new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+        "26.10")));
+    product2 = productRepository.save(new Product("KS93528TUT","Pants","Blue Jeans","The best jeans ever!","Levi's",new BigDecimal(
+        "56.99")));
+    product3 = productRepository.save(new Product("WR-524927","Shirt","Long Sleeve","The worlds greatest shirt","Adidas",new BigDecimal(
+        "29.56")));
 
   }
 }

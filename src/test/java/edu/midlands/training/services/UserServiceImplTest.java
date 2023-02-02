@@ -3,9 +3,11 @@ package edu.midlands.training.services;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UserRepository;
 import java.util.ArrayList;
@@ -54,17 +56,43 @@ class UserServiceImplTest {
   }
 
   @Test
-  void queryAllPetsWithSample() {
+  void queryAllUsersWithSample() {
     List<User> results = userServiceImpl.queryUsers(testUser);
     assertEquals(testList,results);
   }
 
   @Test
-  void queryAllPetsDBError() {
+  void queryAllUsersDBError() {
     when(userRepository.findAll()).thenThrow(EmptyResultDataAccessException.class);
 
     assertThrows(ServiceUnavailable.class,
         () -> userServiceImpl.queryUsers(new User()));
-
   }
+
+  @Test
+  public void getUser() {
+    User result = userServiceImpl.getUser(1L);
+    assertEquals(testUser, result);
+  }
+
+  @Test
+  public void getUserDBError() {
+    when(userRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> userServiceImpl.getUser(1L));
+  }
+
+  @Test
+  public void getPetNotFound() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> userServiceImpl.getUser(1L));
+    String expectedMessage = "Could not locate a User with the id: 1";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+
 }

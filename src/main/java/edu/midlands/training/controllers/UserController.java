@@ -83,7 +83,7 @@ public class UserController {
    *
    * @param id  the id of the user to be updated from the path variable
    * @param user the user's new information from the request body
-   * @return the user if input and date is correct
+   * @return the user if input and data is correct
    */
   @PutMapping(value = "/{id}")
   public ResponseEntity<User> updateUserById(

@@ -3,6 +3,7 @@ package edu.midlands.training.controllers;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_PRODUCTS;
 import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUEST_RECEIVED;
+import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
 import edu.midlands.training.entities.Customer;
@@ -21,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,5 +75,21 @@ public class ProductController {
 
     return new ResponseEntity<>(productService.addProduct(product), HttpStatus.CREATED);
   }
+
+  /**
+   * Update product by id
+   *
+   * @param id  the id of the product to be updated from the path variable
+   * @param product the product's new information from the request body
+   * @return the product if input and data is correct
+   */
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<Product> updateProductById(
+      @PathVariable Long id, @Valid @RequestBody Product product) {
+    logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
+
+    return new ResponseEntity<>(productService.updateProductById(product,id), HttpStatus.OK);
+  }
+
 
 }

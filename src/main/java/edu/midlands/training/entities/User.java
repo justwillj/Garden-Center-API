@@ -31,7 +31,7 @@ public class User {
 
 //  @NotBlank(message = "roles"+ REQUIRED_FIELD)
 //  @Pattern(regexp = "EMPLOYEE|ADMIN")
-  @NotEmpty
+  @NotEmpty(message = "roles"+ REQUIRED_FIELD)
   private String [] roles;
 
   @NotBlank(message = "email"+ REQUIRED_FIELD)

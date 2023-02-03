@@ -7,6 +7,8 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.BadDataResponse;
+import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.UserRepository;
@@ -30,6 +32,8 @@ class UserServiceImplTest {
   UserServiceImpl userServiceImpl;
 
   User testUser;
+  User testUser2;
+  User testUser3;
   List<User> testList = new ArrayList<>();
 
   @BeforeEach
@@ -37,6 +41,8 @@ class UserServiceImplTest {
     MockitoAnnotations.openMocks(this);
 
     testUser = new User("Justin","Dev",new String[]{"EMPLOYEE"},"email@gmail.com","thisismypasseord");
+    testUser2 = new User("Josh","Dev",new String[]{"EMPLOYEE"},"josh@gmail.com","thisismypasseord");
+    testUser3 = new User("test","Dev",new String[]{"wrongRole"},"josh@gmail.com","thisismypasseord");
     testUser.setId(1L);
 
     testList.add(testUser);
@@ -83,7 +89,7 @@ class UserServiceImplTest {
   }
 
   @Test
-  public void getPetNotFound() {
+  public void getUserNotFound() {
     when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
     Exception exception = assertThrows(ResourceNotFound.class,
         () -> userServiceImpl.getUser(1L));
@@ -94,5 +100,41 @@ class UserServiceImplTest {
             + exception.getMessage());
   }
 
+  @Test
+  public void addUser() {
+    User result = userServiceImpl.addUser(testUser2);
+    assertEquals(testUser, result);
+  }
 
+  @Test
+  public void addUserDBError() {
+    when(userRepository.save(any(User.class))).thenThrow(
+        new EmptyResultDataAccessException("Database unavailable", 0));
+    assertThrows(ServiceUnavailable.class,
+        () -> userServiceImpl.addUser(testUser2));
+  }
+
+  @Test
+  public void addUserEmailAlreadyUsed() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> userServiceImpl.addUser(testUser));
+    String expectedMessage = "This email is already in use!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void addUserInvalidRoles() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ConflictData.class,
+        () -> userServiceImpl.addUser(testUser3));
+    String expectedMessage = "Please use a valid role!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
 }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface OrderService {
 
   List<Order> queryOrders(Order order);
+
+  Order getOrder(Long id);
 }

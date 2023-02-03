@@ -6,6 +6,7 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_REC
 
 import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.Product;
+import edu.midlands.training.entities.User;
 import edu.midlands.training.services.OrderService;
 import edu.midlands.training.services.ProductService;
 import java.util.Date;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +44,20 @@ public class OrderController {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + order.toString());
 
     return new ResponseEntity<>(orderService.queryOrders(order), HttpStatus.OK);
+  }
+
+
+  /**
+   * Gets order by id.
+   *
+   * @param id the order's id from the path variable
+   * @return the Order with said id
+   */
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Order> getOrder(@PathVariable Long id) {
+    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
+
+    return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
   }
 
 

@@ -3,6 +3,8 @@ package edu.midlands.training.services;
 import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.Item;
 
+import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.ItemRepository;
 import edu.midlands.training.repositories.OrderRepository;
@@ -40,6 +42,28 @@ public class OrderServiceImpl implements OrderService{
       } catch (Exception e) {
         throw new ServiceUnavailable(e);
       }
+    }
+
+
+  /**
+   * Lookup an Order by its id.
+   *
+   * @param id - the id to lookup
+   * @return the order that matches the id
+   */
+  @Override
+  public Order getOrder(Long id) {
+      try {
+        Order order = orderRepository.findById(id).orElse(null);
+
+        if (order != null) {
+          return order;
+        }
+      } catch (Exception e) {
+        throw new ServiceUnavailable(e);
+      }
+      // if we made it down to this pint, we did not find the Order
+      throw new ResourceNotFound("Could not locate a Order with the id: " + id);
     }
 
 }

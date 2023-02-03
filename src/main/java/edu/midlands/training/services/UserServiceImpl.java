@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
-    // if we made it down to this pint, we did not find the Pet
+    // if we made it down to this pint, we did not find the User
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 

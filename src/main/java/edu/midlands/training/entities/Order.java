@@ -1,8 +1,10 @@
 package edu.midlands.training.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -95,5 +97,14 @@ public class Order {
         ", orderTotal=" + orderTotal +
         ", items=" + items +
         '}';
+  }
+
+  @JsonIgnore
+  public  boolean isEmpty() {
+    return Objects.isNull(id) &&
+        Objects.isNull(customerId) &&
+        Objects.isNull(date) &&
+        Objects.isNull(orderTotal) &&
+        Objects.isNull(items);
   }
 }

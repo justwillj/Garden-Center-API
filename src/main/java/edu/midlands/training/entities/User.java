@@ -4,7 +4,9 @@ import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.midlands.training.exceptions.ConflictData;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern.Flag;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Entity
 @Table(name = "\"User\"")

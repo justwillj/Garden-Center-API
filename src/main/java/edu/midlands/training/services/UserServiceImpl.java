@@ -131,15 +131,21 @@ public class UserServiceImpl implements UserService {
     }
     try {
       User userFromDb = userRepository.findById(id).orElse(null);
-      if (userFromDb != null) {
-        return userRepository.save(user);
-      }
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the User
-    throw new ResourceNotFound("Could not locate a Pet with the id: " + id);
+    throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
+
+
+
+
+
+
+
+
+
 
   /**
    * Delete a User from the database.

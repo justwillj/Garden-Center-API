@@ -131,6 +131,10 @@ public class UserServiceImpl implements UserService {
     }
     try {
       User userFromDb = userRepository.findById(id).orElse(null);
+      if (userFromDb != null) {
+        return userRepository.save(user);
+      }
+
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }

@@ -2,13 +2,18 @@ package edu.midlands.training.data;
 
 import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customer;
+import edu.midlands.training.entities.Item;
+import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
 import edu.midlands.training.repositories.AddressRepository;
 import edu.midlands.training.repositories.CustomerRepository;
+import edu.midlands.training.repositories.ItemRepository;
+import edu.midlands.training.repositories.OrderRepository;
 import edu.midlands.training.repositories.ProductRepository;
 import edu.midlands.training.repositories.UserRepository;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +36,12 @@ public class DataLoader implements CommandLineRunner {
   @Autowired
   private ProductRepository productRepository;
 
+  @Autowired
+  private OrderRepository orderRepository;
+
+  @Autowired
+  private ItemRepository itemRepository;
+
 
   private User user1;
   private User user2;
@@ -48,6 +59,16 @@ public class DataLoader implements CommandLineRunner {
   private Product product2;
   private Product product3;
 
+  private Order order1;
+  private Order order2;
+  private Order order3;
+
+  private Item item1;
+  private Item item2;
+  private Item item3;
+
+
+
 
 
   @Override
@@ -56,6 +77,9 @@ public class DataLoader implements CommandLineRunner {
     loadAddresses();
     loadCustomers();
     loadProducts();
+    loadItems();
+    loadOrders();
+
   }
 
   private void loadUsers(){
@@ -80,6 +104,18 @@ public class DataLoader implements CommandLineRunner {
         "56.99")));
     product3 = productRepository.save(new Product("WR-524927","Shirt","Long Sleeve","The worlds greatest shirt","Adidas",new BigDecimal(
         "29.56")));
-
   }
+
+  private void loadOrders(){
+    order1 = orderRepository.save(new Order(2L, LocalDate.of(2020,01,02),new BigDecimal("150.00"),item1));
+    order2 = orderRepository.save(new Order(1L, LocalDate.of(2021,05,14),new BigDecimal("222.33"),item2));
+    order3 = orderRepository.save(new Order(3L, LocalDate.of(2022,07,22),new BigDecimal("89.45"),item3));
+  }
+
+  private void loadItems(){
+    item1 = itemRepository.save(new Item(1L,6));
+    item2 = itemRepository.save(new Item(2L,10));
+    item3 = itemRepository.save(new Item(3L,2));
+  }
+
 }

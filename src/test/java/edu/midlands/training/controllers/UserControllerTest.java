@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -85,4 +86,21 @@ class UserControllerTest {
         .andExpect(expectedType)
         .andExpect(jsonPath("$.title", is("Dev 2")));
   }
+
+  @Test
+  void putUser() throws Exception {
+    User user1 = new User("Justin","Dev",new String[]{"EMPLOYEE"},"email@gmail.com","thisismypasseord");
+    user1.setId(1L);
+    String userAsString = mapper.writeValueAsString(user1);
+    this.mockMvc
+        .perform(put(CONTEXT_USERS + "/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(userAsString))
+        .andExpect(okStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.email", is("email@gmail.com")));
+
+  }
+
+
 }

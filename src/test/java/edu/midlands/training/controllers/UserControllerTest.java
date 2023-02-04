@@ -5,9 +5,11 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.midlands.training.entities.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +72,17 @@ class UserControllerTest {
         .andExpect(jsonPath("$.name", is("Justin")));
   }
 
+  @Test
+  void postNewUser() throws Exception {
+    User user1 = new User("Josh","Dev 2",new String[]{"EMPLOYEE"},"Josh2@gmail.com","joshpassword");
+    String userAsString = mapper.writeValueAsString(user1);
 
+    this.mockMvc
+        .perform(post(CONTEXT_USERS)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(userAsString))
+        .andExpect(createdStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.title", is("Dev 2")));
+  }
 }

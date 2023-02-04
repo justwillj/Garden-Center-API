@@ -3,6 +3,7 @@ package edu.midlands.training.controllers;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_ORDERS;
 import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUEST_RECEIVED;
+import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
 import edu.midlands.training.entities.Order;
@@ -21,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,5 +79,20 @@ public class OrderController {
     return new ResponseEntity<>(orderService.addOrder(order), HttpStatus.CREATED);
   }
 
+
+  /**
+   * Update order by id
+   *
+   * @param id  the id of the order to be updated from the path variable
+   * @param order the order's new information from the request body
+   * @return the order if input and data is correct
+   */
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<Order> updateUserById(
+      @PathVariable Long id, @Valid @RequestBody Order order) {
+    logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
+
+    return new ResponseEntity<>(orderService.updateOderById(order,id), HttpStatus.OK);
+  }
 
 }

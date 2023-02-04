@@ -133,4 +133,61 @@ public class OrderServiceImpl implements OrderService{
     }
 
 
+
+  /**
+   * Update an existing Order in the database.
+   *
+   * @param id  - the id of the order to update.
+   * @param order - the Order information to update.
+   * @return the updated order if done correctly
+   */
+  @Override
+  public Order updateOderById(Order order, Long id) {
+    // first, check to make sure the id passed matches the id in the Pet passed
+    if (!order.getId().equals(id)) {
+      throw new BadDataResponse("Order ID must match the ID specified in the URL");
+    }
+    BigDecimal rounded = order.getOrderTotal().setScale(2, RoundingMode.CEILING);
+    order.setOrderTotal(rounded);
+
+    boolean customerTest = false;
+    boolean productTest = false;
+
+    for (Customer c: customerRepository.findAll()) {
+      if (Objects.equals(order.getCustomerId(), c.getId())) {
+        customerTest = true;
+        break;
+      }
+    }
+    for (Product p :productRepository.findAll()){
+      if (Objects.equals(order.getItems().getProductId(), p.getId())) {
+        productTest = true;
+        break;
+      }
+    }
+    if (!customerTest){
+      throw new BadDataResponse("This customer Id is not in the system!");
+    }
+    if (!productTest){
+      throw new BadDataResponse("This product Id is not in the system");
+    }
+
+    if (order.getItems().getQuantity() < 0){
+      throw  new BadDataResponse("Quantity must be greater then 0!");
+    }
+
+    try {
+      Order orderFromDb = orderRepository.findById(id).orElse(null);
+      if (orderFromDb != null) {
+        return orderRepository.save(order);
+      }
+
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+    // if we made it down to this pint, we did not find the User
+    throw new ResourceNotFound("Could not locate a Order with the id: " + id);
+  }
+
+
 }

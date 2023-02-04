@@ -2,6 +2,7 @@ package edu.midlands.training.controllers;
 
 import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_ORDERS;
+import static edu.midlands.training.constants.StringConstants.LOGGER_DELETE_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
@@ -19,12 +20,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -93,6 +96,19 @@ public class OrderController {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
     return new ResponseEntity<>(orderService.updateOderById(order,id), HttpStatus.OK);
+  }
+
+  /**
+   * Delete order by id.
+   *
+   * @param id the order's id from the path variable
+   */
+  @DeleteMapping(value = "/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteOrder(@PathVariable Long id) {
+    logger.info(new Date() + LOGGER_DELETE_REQUEST_RECEIVED + id);
+
+    orderService.deleteOrder(id);
   }
 
 }

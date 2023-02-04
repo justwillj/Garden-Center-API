@@ -190,4 +190,24 @@ public class OrderServiceImpl implements OrderService{
   }
 
 
+  /**
+   * Delete an Order from the database.
+   *
+   * @param id - the id of the order to be deleted.
+   */
+  @Override
+  public void deleteOrder(Long id) {
+    try {
+      if (orderRepository.existsById(id)) {
+       orderRepository.deleteById(id);
+        return;
+      }
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+
+    // if we made it down to this pint, we did not find the Pet
+    throw new ResourceNotFound("Could not locate a Order with the id: " + id);
+  }
+
 }

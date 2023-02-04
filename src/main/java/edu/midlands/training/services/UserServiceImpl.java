@@ -142,15 +142,6 @@ public class UserServiceImpl implements UserService {
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 
-
-
-
-
-
-
-
-
-
   /**
    * Delete a User from the database.
    *

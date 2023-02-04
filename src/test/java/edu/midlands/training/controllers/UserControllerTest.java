@@ -4,6 +4,7 @@ import static edu.midlands.training.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -24,7 +25,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 @DirtiesContext
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,10 +33,6 @@ class UserControllerTest {
   ResultMatcher okStatus = MockMvcResultMatchers.status().isOk();
   ResultMatcher createdStatus = MockMvcResultMatchers.status().isCreated();
   ResultMatcher deletedStatus = MockMvcResultMatchers.status().isNoContent();
-  ResultMatcher notFoundStatus = MockMvcResultMatchers.status().isNotFound();
-  ResultMatcher badRequestStatus = MockMvcResultMatchers.status().isBadRequest();
-  ResultMatcher dataErrorStatus = MockMvcResultMatchers.status().isServiceUnavailable();
-  ResultMatcher serverErrorStatus = MockMvcResultMatchers.status().isInternalServerError();
 
   ResultMatcher expectedType = MockMvcResultMatchers.content()
       .contentType(MediaType.APPLICATION_JSON);
@@ -56,12 +52,13 @@ class UserControllerTest {
   }
 
   @Test
+
   void getUsersReturnsThree() throws Exception {
     mockMvc
         .perform(get(CONTEXT_USERS))
         .andExpect(okStatus)
         .andExpect(expectedType)
-        .andExpect(jsonPath("$", hasSize(2)));
+        .andExpect(jsonPath("$", hasSize(3)));
   }
 
   @Test
@@ -74,6 +71,7 @@ class UserControllerTest {
   }
 
   @Test
+  @DirtiesContext
   void postNewUser() throws Exception {
     User user1 = new User("Josh","Dev 2",new String[]{"EMPLOYEE"},"Josh2@gmail.com","joshpassword");
     String userAsString = mapper.writeValueAsString(user1);
@@ -102,5 +100,12 @@ class UserControllerTest {
 
   }
 
+
+  @Test
+  void deleteUser() throws Exception {
+    mockMvc
+        .perform(delete(CONTEXT_USERS + "/2"))
+        .andExpect(deletedStatus);
+  }
 
 }

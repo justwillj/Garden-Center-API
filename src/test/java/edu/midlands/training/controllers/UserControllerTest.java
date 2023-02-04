@@ -2,6 +2,7 @@ package edu.midlands.training.controllers;
 
 import static edu.midlands.training.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -58,6 +59,15 @@ class UserControllerTest {
         .andExpect(okStatus)
         .andExpect(expectedType)
         .andExpect(jsonPath("$", hasSize(2)));
+  }
+
+  @Test
+  void getUserThatDoesExistById() throws Exception {
+    mockMvc
+        .perform(get(CONTEXT_USERS + "/1"))
+        .andExpect(okStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.name", is("Justin")));
   }
 
 

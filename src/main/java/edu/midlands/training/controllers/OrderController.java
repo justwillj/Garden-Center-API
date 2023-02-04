@@ -2,6 +2,7 @@ package edu.midlands.training.controllers;
 
 import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_ORDERS;
+import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
 import edu.midlands.training.entities.Order;
@@ -11,6 +12,7 @@ import edu.midlands.training.services.OrderService;
 import edu.midlands.training.services.ProductService;
 import java.util.Date;
 import java.util.List;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,6 +62,19 @@ public class OrderController {
     logger.info(new Date() + LOGGER_REQUEST_RECEIVED + id);
 
     return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
+  }
+
+  /**
+   * Adds a new order to the database.
+   *
+   * @param order the order from the request body being added
+   * @return the order if everything is correctly added
+   */
+  @PostMapping
+  public ResponseEntity<Order> save(@Valid @RequestBody Order order) {
+    logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
+
+    return new ResponseEntity<>(orderService.addOrder(order), HttpStatus.CREATED);
   }
 
 

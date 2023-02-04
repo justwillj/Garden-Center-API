@@ -94,6 +94,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Product updateProductById(Product product, Long id) {
 
+    BigDecimal rounded = product.getPrice().setScale(2, RoundingMode.CEILING);
+    product.setPrice(rounded);
+
       // first, check to make sure the id passed matches the id in the Pet passed
       if (!product.getId().equals(id)) {
         throw new BadDataResponse("Product ID must match the ID specified in the URL");

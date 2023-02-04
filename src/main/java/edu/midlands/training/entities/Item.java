@@ -1,5 +1,7 @@
 package edu.midlands.training.entities;
 
+import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -8,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import org.aspectj.weaver.ast.Or;
 
 @Entity
@@ -17,8 +22,10 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotNull(message = "productId"+ REQUIRED_FIELD)
   private Long productId;
-
+  @NotNull(message = "quantity"+ REQUIRED_FIELD)
+  @DecimalMin(value = "0.00",message = "quantity must be a positive number!")
   private Integer quantity;
 
   @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)

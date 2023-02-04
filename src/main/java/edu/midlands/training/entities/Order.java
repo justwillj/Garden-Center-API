@@ -1,5 +1,7 @@
 package edu.midlands.training.entities;
 
+import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
@@ -13,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,12 +30,13 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotNull(message = "customerId"+ REQUIRED_FIELD)
   private Long customerId;
-
-//  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-//  @JsonFormat(pattern = "yyyy/MM/dd")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
+  @NotNull(message = "date"+ REQUIRED_FIELD)
   private LocalDate date;
-
+  @NotNull(message = "orderTotal"+ REQUIRED_FIELD)
+  @DecimalMin(value = "0.00",message = "total must be a positive number!")
   private BigDecimal orderTotal;
 
   @ManyToOne(fetch = FetchType.EAGER)

@@ -131,7 +131,7 @@ class UserServiceImplTest {
   @Test
   public void addUserEmailAlreadyUsed() {
     when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
-    Exception exception = assertThrows(BadDataResponse.class,
+    Exception exception = assertThrows(ConflictData.class,
         () -> userServiceImpl.addUser(testUser));
     String expectedMessage = "This email is already in use!";
     assertEquals(expectedMessage,

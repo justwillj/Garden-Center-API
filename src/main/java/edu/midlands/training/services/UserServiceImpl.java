@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
       //Checks to see if the email is already taken and if so throws an exceptions
       for (User u : userRepository.findAll()) {
         if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
-          throw new BadDataResponse("This email is already in use!");
+          throw new ConflictData("This email is already in use!");
         }
       }
       try {

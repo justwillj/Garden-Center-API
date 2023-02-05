@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.ProductRepository;
@@ -39,11 +40,11 @@ class ProductServiceImplTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    testProduct1= new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+    testProduct1= new Product("TS17832","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
         "26.10"));
-    testProduct2= new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+    testProduct2= new Product("WA-612436","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
         "26.10"));
-    testProduct3= new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+    testProduct3= new Product("BAZ124483","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
         "26.10"));
     testProduct1.setId(1L);
     testProduct2.setId(2L);
@@ -99,6 +100,32 @@ class ProductServiceImplTest {
     Exception exception = assertThrows(ResourceNotFound.class,
         () -> productServiceImpl.getProduct(1L));
     String expectedMessage = "Could not locate a Product with the id: 1";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void addProduct() {
+    Product result = productServiceImpl.addProduct(testProduct2);
+    assertEquals(testProduct1, result);
+  }
+
+  @Test
+  public void addProductDBError() {
+    when(productRepository.save(any(Product.class))).thenThrow(
+        new EmptyResultDataAccessException("Database unavailable", 0));
+    assertThrows(ServiceUnavailable.class,
+        () -> productServiceImpl.addProduct(testProduct2));
+  }
+
+  @Test
+  public void addUserSkuAlreadyUsed() {
+    when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ConflictData.class,
+        () -> productServiceImpl.addProduct(testProduct1));
+    String expectedMessage = "This sku is already in use!";
     assertEquals(expectedMessage,
         exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"

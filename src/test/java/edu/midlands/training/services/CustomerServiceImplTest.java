@@ -144,4 +144,54 @@ class CustomerServiceImplTest {
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
+
+  @Test
+  public void updateCustomerById() {
+    Customer result = customerServiceImpl.updateCustomerById(testCustomer1, 1L);
+    assertEquals(testCustomer1, result);
+  }
+
+  @Test
+  public void updateCustomerByIdDBError() {
+    when(customerRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> customerServiceImpl.updateCustomerById(testCustomer2, 2L));
+  }
+
+  @Test
+  public void updateCustomerBySameEmail() {
+    when(customerRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    Exception exception = assertThrows(ConflictData.class,
+        () -> customerServiceImpl.updateCustomerById(testCustomer3, 3L).setEmail("josh@gmail.com"));
+    String expectedMessage = "This email is already in use!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateCustomerByIdBadData() {
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> customerServiceImpl.updateCustomerById(testCustomer1, 2L));
+    String expectedMessage = "Customer ID must match the ID specified in the URL";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateCustomerByIdNotFound() {
+    when(customerRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> customerServiceImpl.updateCustomerById(testCustomer2, 2L));
+    String expectedMessage = "Could not locate a Customer with the id: 2";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
 }

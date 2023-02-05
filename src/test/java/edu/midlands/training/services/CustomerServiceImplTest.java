@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.Address;
@@ -193,5 +195,28 @@ class CustomerServiceImplTest {
         exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
+  }
+
+  @Test
+  public void deleteCustomer() {
+    when(customerRepository.existsById(anyLong())).thenReturn(true);
+    customerServiceImpl.deleteCustomer(1L);
+    verify(customerRepository).deleteById(any());
+  }
+
+  @Test
+  public void deleteCustomerBadID() {
+    doThrow(new ResourceNotFound("Database unavailable")).when(customerRepository)
+        .deleteById(anyLong());
+    assertThrows(ResourceNotFound.class,
+        () -> customerServiceImpl.deleteCustomer(1L));
+  }
+
+  @Test
+  public void deleteCustomerDBError() {
+    doThrow(new ServiceUnavailable("Database unavailable")).when(customerRepository)
+        .existsById(anyLong());
+    assertThrows(ServiceUnavailable.class,
+        () -> customerServiceImpl.deleteCustomer(1L));
   }
 }

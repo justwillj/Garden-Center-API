@@ -6,9 +6,13 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.midlands.training.entities.Product;
+import edu.midlands.training.entities.User;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +70,21 @@ class ProductControllerTest {
         .andExpect(expectedType)
         .andExpect(jsonPath("$.type", is("Shoes")));
   }
+
+  @Test
+  @DirtiesContext
+  void postNewProduct() throws Exception {
+    Product product1 = new Product("TE-46223","Shoes","Leather Platform","Really cool shoes!","Dr. Martens"
+        ,new BigDecimal("26.10"));
+    String productAsString = mapper.writeValueAsString(product1);
+
+    this.mockMvc
+        .perform(post(CONTEXT_PRODUCTS)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(productAsString))
+        .andExpect(createdStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.name", is("Leather Platform")));
+  }
+
 }

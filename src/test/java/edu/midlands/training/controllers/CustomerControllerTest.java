@@ -75,6 +75,7 @@ class CustomerControllerTest {
   }
 
   @Test
+  @DirtiesContext
   void postNewCustomer() throws Exception {
     String json = "{\"name\":\"Lee\",\"email\":\"lee@gmail.com\",\"address\":{\"id\":1,\"street\":\"1169 Boone Crockett Lane\",\"city\":\"Olympia\",\"state\":\"WA\",\"zipCode\":\"98501\"}}";
 //    Address address1 = new Address("1169 Boone Crockett Lane","Olympia","WA","98501");

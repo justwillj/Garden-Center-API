@@ -1,5 +1,6 @@
 package edu.midlands.training.controllers;
 
+import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_PRODUCTS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
@@ -7,6 +8,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,4 +89,19 @@ class ProductControllerTest {
         .andExpect(jsonPath("$.name", is("Leather Platform")));
   }
 
+  @Test
+  void putProduct() throws Exception {
+    Product product1 = new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+    "26.10"));
+    product1.setId(1L);
+    String productAsString = mapper.writeValueAsString(product1);
+    this.mockMvc
+        .perform(put(CONTEXT_PRODUCTS + "/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(productAsString))
+        .andExpect(okStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.sku", is("TS12356")));
+
+  }
 }

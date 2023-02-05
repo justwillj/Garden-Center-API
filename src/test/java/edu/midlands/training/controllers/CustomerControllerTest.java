@@ -6,9 +6,15 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.midlands.training.entities.Address;
+import edu.midlands.training.entities.Customer;
+import edu.midlands.training.entities.User;
+import edu.midlands.training.repositories.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,4 +73,36 @@ class CustomerControllerTest {
         .andExpect(jsonPath("$.name", is("John")));
   }
 
+  @Test
+  void postNewCustomer() throws Exception {
+    String json = "{\"name\":\"Lee\",\"email\":\"lee@gmail.com\",\"address\":{\"id\":1,\"street\":\"1169 Boone Crockett Lane\",\"city\":\"Olympia\",\"state\":\"WA\",\"zipCode\":\"98501\"}}";
+//    Address address1 = new Address("1169 Boone Crockett Lane","Olympia","WA","98501");
+//    Customer customer1 = new Customer("Lee","lee@gmail.com",new Address());
+//    customer1.setAddress(address1);
+//    String customerAsString = mapper.writeValueAsString(customer1);
+
+    this.mockMvc
+        .perform(post(CONTEXT_CUSTOMERS)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(createdStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.name", is("Lee")));
+  }
+
+  @Test
+  void putCustomer() throws Exception {
+    String json = "{\"id\":1,\"name\":\"Lee\",\"email\":\"lee@gmail.com\",\"address\":{\"id\":1,\"street\":\"1169 Boone Crockett Lane\",\"city\":\"Olympia\",\"state\":\"WA\",\"zipCode\":\"98501\"}}";
+////    Address address1 = new Address("1169 Boone Crockett Lane","Olympia","WA","98501");
+////    Customer customer1 = new Customer("Lee","lee@gmail.com",address1);
+//    customer1.setId(1L);
+//    String userAsString = mapper.writeValueAsString(customer1);
+    this.mockMvc
+        .perform(put(CONTEXT_CUSTOMERS + "/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(okStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.email", is("lee@gmail.com")));
+  }
 }

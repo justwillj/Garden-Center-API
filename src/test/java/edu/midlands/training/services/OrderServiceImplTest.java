@@ -3,11 +3,13 @@ package edu.midlands.training.services;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.Item;
 import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.OrderRepository;
 import edu.midlands.training.repositories.UserRepository;
@@ -92,6 +94,31 @@ class OrderServiceImplTest {
 
     assertThrows(ServiceUnavailable.class,
         () -> orderServiceImpl.queryOrders(new Order()));
+  }
+
+  @Test
+  public void getOrder() {
+    Order result = orderServiceImpl.getOrder(1L);
+    assertEquals(testOrder1, result);
+  }
+
+  @Test
+  public void getOrderDBError() {
+    when(orderRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> orderServiceImpl.getOrder(1L));
+  }
+
+  @Test
+  public void getOrderNotFound() {
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> orderServiceImpl.getOrder(1L));
+    String expectedMessage = "Could not locate a Order with the id: 1";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
   }
 
 }

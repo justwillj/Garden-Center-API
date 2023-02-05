@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.BadDataResponse;
 import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
@@ -35,6 +38,7 @@ class ProductServiceImplTest {
   Product testProduct1;
   Product testProduct2;
   Product testProduct3;
+  Product testProduct4;
   List<Product> testList = new ArrayList<>();
 
   @BeforeEach
@@ -46,12 +50,16 @@ class ProductServiceImplTest {
         "26.10"));
     testProduct3= new Product("BAZ124483","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
         "26.10"));
+    testProduct4= new Product("BAZ124483","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+        "26.10"));
     testProduct1.setId(1L);
     testProduct2.setId(2L);
     testProduct3.setId(3L);
+    testProduct4.setId(4L);
 
     testList.add(testProduct1);
     testList.add(testProduct3);
+    testList.add(testProduct4);
 
     when(productRepository.findAll()).thenReturn(testList);
     when(productRepository.findAll(any(Example.class))).thenReturn(testList);
@@ -121,7 +129,7 @@ class ProductServiceImplTest {
   }
 
   @Test
-  public void addUserSkuAlreadyUsed() {
+  public void addProductSkuAlreadyUsed() {
     when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
     Exception exception = assertThrows(ConflictData.class,
         () -> productServiceImpl.addProduct(testProduct1));
@@ -130,5 +138,77 @@ class ProductServiceImplTest {
         exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
+  }
+
+  @Test
+  public void updateProductById() {
+    Product result = productServiceImpl.updateProductById(testProduct1, 1L);
+    assertEquals(testProduct1, result);
+  }
+
+  @Test
+  public void updatePByIdDBError() {
+    when(productRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> productServiceImpl.updateProductById(testProduct2, 2L));
+  }
+
+  @Test
+  public void updateProductSkuAlreadyUsed() {
+    when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ConflictData.class,
+        () -> productServiceImpl.updateProductById(testProduct4,4L).setSku("BAZ124483"));
+    String expectedMessage = "This sku is already in use!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateProductByIdBadData() {
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> productServiceImpl.updateProductById(testProduct1, 2L));
+    String expectedMessage = "Product ID must match the ID specified in the URL";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateProductByIdNotFound() {
+    when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> productServiceImpl.updateProductById(testProduct2, 2L));
+    String expectedMessage = "Could not locate a Product with the id: 2";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void deleteProduct() {
+    when(productRepository.existsById(anyLong())).thenReturn(true);
+   productServiceImpl.deleteProduct(1L);
+    verify(productRepository).deleteById(any());
+  }
+
+  @Test
+  public void deleteProductBadID() {
+    doThrow(new ResourceNotFound("Database unavailable")).when(productRepository)
+        .deleteById(anyLong());
+    assertThrows(ResourceNotFound.class,
+        () -> productServiceImpl.deleteProduct(1L));
+  }
+
+  @Test
+  public void deleteProductDBError() {
+    doThrow(new ServiceUnavailable("Database unavailable")).when(productRepository)
+        .existsById(anyLong());
+    assertThrows(ServiceUnavailable.class,
+        () -> productServiceImpl.deleteProduct(1L));
   }
 }

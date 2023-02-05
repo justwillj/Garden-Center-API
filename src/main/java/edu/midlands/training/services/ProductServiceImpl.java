@@ -121,7 +121,7 @@ public class ProductServiceImpl implements ProductService {
       } catch (Exception e) {
         throw new ServiceUnavailable(e);
       }
-      // if we made it down to this pint, we did not find the Proudct
+      // if we made it down to this pint, we did not find the Product
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 

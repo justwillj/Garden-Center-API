@@ -3,11 +3,13 @@ package edu.midlands.training.services;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import edu.midlands.training.entities.Address;
 import edu.midlands.training.entities.Customer;
 import edu.midlands.training.entities.User;
+import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.AddressRepository;
 import edu.midlands.training.repositories.CustomerRepository;
@@ -87,6 +89,30 @@ class CustomerServiceImplTest {
 
     assertThrows(ServiceUnavailable.class,
         () -> customerServiceImpl.queryCustomers(new Customer()));
+  }
 
+  @Test
+  public void getCustomer() {
+    Customer result = customerServiceImpl.getCustomer(1L);
+    assertEquals(testCustomer1, result);
+  }
+
+  @Test
+  public void getCustomerDBError() {
+    when(customerRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> customerServiceImpl.getCustomer(1L));
+  }
+
+  @Test
+  public void getCustomerNotFound() {
+    when(customerRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> customerServiceImpl.getCustomer(1L));
+    String expectedMessage = "Could not locate a Customer with the id: 1";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
   }
 }

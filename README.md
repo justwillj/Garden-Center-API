@@ -28,6 +28,16 @@ run the test with coverage follow these steps:
 
 ## Pre-requisites
 
+Make sure that your postgres database is available and configured with the following options:
+
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password123
+PORT=5432
+
+
+The DataLoader class in the data package will load a few examples of each entity into the
+database after the service starts up.
+
 
 ## Usage
 

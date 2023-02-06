@@ -71,7 +71,7 @@ public class CustomerController {
    * @return the customer if everything is correctly added
    */
   @PostMapping
-  public ResponseEntity<Customer> save(@Valid @RequestBody Customer customer) {
+  public ResponseEntity<Customer> saveOrder(@Valid @RequestBody Customer customer) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
     return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.CREATED);

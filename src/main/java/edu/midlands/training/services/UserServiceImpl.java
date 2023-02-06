@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
    * This method will take a user as an optional parameter. If the user is given then it will create
    * a query by example. If nothing is given then we will get all users.
    *
-   * @param user - any provided fields will be converted to an exact match AND query
+   * @param user - any provided fields will be converted to an exact match AND queried
    * @return a list of users that match the query, if not supplied then all the users in the database
    */
   @Override

@@ -73,7 +73,7 @@ public class ProductController {
    * @return the product if everything is correctly added
    */
   @PostMapping
-  public ResponseEntity<Product> save(@Valid @RequestBody Product product) {
+  public ResponseEntity<Product> saveProduct(@Valid @RequestBody Product product) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
     return new ResponseEntity<>(productService.addProduct(product), HttpStatus.CREATED);

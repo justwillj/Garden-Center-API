@@ -7,6 +7,7 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUES
 import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
+import edu.midlands.training.entities.Item;
 import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
@@ -76,7 +77,7 @@ public class OrderController {
    * @return the order if everything is correctly added
    */
   @PostMapping
-  public ResponseEntity<Order> save(@Valid @RequestBody Order order) {
+  public ResponseEntity<Order> saveOrder(@Valid @RequestBody Order order) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
     return new ResponseEntity<>(orderService.addOrder(order), HttpStatus.CREATED);
@@ -91,11 +92,11 @@ public class OrderController {
    * @return the order if input and data is correct
    */
   @PutMapping(value = "/{id}")
-  public ResponseEntity<Order> updateUserById(
+  public ResponseEntity<Order> updateOrderById(
       @PathVariable Long id, @Valid @RequestBody Order order) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(orderService.updateOderById(order,id), HttpStatus.OK);
+    return new ResponseEntity<>(orderService.updateOrderById(order,id), HttpStatus.OK);
   }
 
   /**

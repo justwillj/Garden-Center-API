@@ -74,7 +74,7 @@ public class UserController {
    * @return the user if everything is correctly added
    */
   @PostMapping
-  public ResponseEntity<User> save(@Valid @RequestBody User user) {
+  public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
 
     return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);

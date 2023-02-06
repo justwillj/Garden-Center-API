@@ -3,6 +3,7 @@ package edu.midlands.training.entities;
 import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -81,5 +82,13 @@ public class Item {
         ", quantity=" + quantity +
         ", orders=" + orders +
         '}';
+  }
+
+  @JsonIgnore
+  public  boolean isEmpty() {
+    return Objects.isNull(id) &&
+        Objects.isNull(productId) &&
+        Objects.isNull(quantity) &&
+        Objects.isNull(orders);
   }
 }

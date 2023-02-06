@@ -23,6 +23,13 @@ public class CustomerServiceImpl implements CustomerService {
   @Autowired
   private UserRepository userRepository;
 
+  /**
+   * This method will take a custoemr as an optional parameter. If the user is given then it will create
+   * a query by example. If nothing is given then we will get all customers.
+   *
+   * @param customer - any provided fields will be converted to an exact match AND queried
+   * @return a list of customers that match the query, if not supplied then all the customers in the database
+   */
   @Override
   public List<Customer> queryCustomers(Customer customer) {
     try {
@@ -57,7 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
   public Customer addCustomer(Customer customer) {
 
     for (Customer c: customerRepository.findAll()){
-
       if (Objects.equals(c.getEmail().toLowerCase(), customer.getEmail().toLowerCase())){
         throw new ConflictData("This email is already in use!");
       }

@@ -1,5 +1,6 @@
 package edu.midlands.training.services;
 
+import edu.midlands.training.entities.Item;
 import edu.midlands.training.entities.Order;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface OrderService {
 
   Order addOrder(Order order);
 
-  Order updateOderById(Order order, Long id);
+  Order updateOrderById(Order order, Long id);
 
   void deleteOrder(Long id);
 }

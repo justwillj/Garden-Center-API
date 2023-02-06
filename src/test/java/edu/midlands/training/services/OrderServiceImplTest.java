@@ -58,9 +58,6 @@ class OrderServiceImplTest {
   Order testOrder1;
   Order testOrder2;
   Order testOrder3;
-  Order testOrder4;
-
-  Order testOrder5;
 
   Item item1;
   Item item2;
@@ -73,6 +70,7 @@ class OrderServiceImplTest {
   Address address1;
 
   Product product1;
+  Product product2;
 
 
   List<Order> testList = new ArrayList<>();
@@ -89,8 +87,9 @@ class OrderServiceImplTest {
     testOrder2 = new Order(1L, LocalDate.of(2021,05,14),new BigDecimal("222.33"),item2);
     testOrder3 = new Order(3L, LocalDate.of(2022,07,22),new BigDecimal("89.45"),item3);
 
-    item1=new Item(1L,6);
-    item2=new Item(1L,10);
+    item1=new Item(2L,6);
+    item2=new Item(10L,10);
+    item3=new Item(1L,-10);
 
     address1 = new Address("1169 Boone Crockett Lane","Olympia","WA","98501");
 
@@ -99,13 +98,18 @@ class OrderServiceImplTest {
 
     product1= new Product("TS12356","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
         "26.10"));
+    product2= new Product("WPD-34521","Shoes","Leather Platform","Really cool shoes!","Dr. Martens",new BigDecimal(
+        "26.10"));
 
     customer1.setId(1L);
     customer2.setId(2L);
     testCustomer.add(customer1);
+    testCustomer.add(customer2);
 
     product1.setId(1L);
+    product2.setId(2L);
     testProduct.add(product1);
+    testProduct.add(product2);
 
     testItem.add(item1);
     testItem.add(item2);
@@ -183,12 +187,14 @@ class OrderServiceImplTest {
 
   @Test
   public void addOrder() {
+    testOrder2.setItems(item1);
     Order result = orderServiceImpl.addOrder(testOrder2);
     assertEquals(testOrder1, result);
   }
 
   @Test
   public void addOrderDBError() {
+    testOrder2.setItems(item1);
     when(orderRepository.save(any(Order.class))).thenThrow(
         new EmptyResultDataAccessException("Database unavailable", 0));
     assertThrows(ServiceUnavailable.class,
@@ -197,6 +203,7 @@ class OrderServiceImplTest {
 
   @Test
   public void addOrderCustomerIdNotInSystem() {
+    testOrder3.setItems(item2);
     when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
     Exception exception = assertThrows(BadDataResponse.class,
         () -> orderServiceImpl.addOrder(testOrder3));
@@ -207,7 +214,119 @@ class OrderServiceImplTest {
             + exception.getMessage());
   }
 
+  @Test
+  public void addOrderQuantityIsLessThan0() {
+    testOrder2.setItems(item3);
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.addOrder(testOrder2));
+    String expectedMessage = "Quantity must be greater then 0!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
 
+  @Test
+  public void addOrderProductIdNotInSystem() {
+    testOrder2.setItems(item2);
+
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.addOrder(testOrder2));
+    String expectedMessage = "This product Id is not in the system";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateOrderByIdBadData() {
+    testOrder2.setItems(item2);
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2, 1L));
+    String expectedMessage = "Order ID must match the ID specified in the URL";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateOrderById() {
+    testOrder1.setItems(item1);
+    item1.setId(1L);
+    Order result = orderServiceImpl.updateOrderById(testOrder1, 1L);
+    assertEquals(testOrder1, result);
+  }
+
+  @Test
+  public void updateOrderByIdDBError() {
+    testOrder2.setItems(item2);
+    item2.setId(1L);
+    when(orderRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
+    assertThrows(ServiceUnavailable.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2 ,2L));
+  }
+
+  @Test
+  public void updateOrderQuantityIsLessThan0() {
+    testOrder2.setItems(item3);
+    item3.setId(1L);
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2,2L));
+    String expectedMessage = "Quantity must be greater then 0!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateOrderProductIdNotInSystem() {
+    testOrder2.setItems(item3);
+    item3.setId(10L);
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2,2L));
+    String expectedMessage = "This product Id is not in the system";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateOrderCustomerIdNotInSystem() {
+    testOrder2.setItems(item3);
+    testOrder2.setCustomerId(10L);
+    item3.setId(1L);
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+    Exception exception = assertThrows(BadDataResponse.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2,2L));
+    String expectedMessage = "This customer Id is not in the system!";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
+
+  @Test
+  public void updateOrderByIdNotFound() {
+    testOrder2.setItems(item2);
+    item2.setId(1L);
+    when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    Exception exception = assertThrows(ResourceNotFound.class,
+        () -> orderServiceImpl.updateOrderById(testOrder2, 2L));
+    String expectedMessage = "Could not locate a Order with the id: 2";
+    assertEquals(expectedMessage,
+        exception.getMessage(),
+        () -> "Message did not equal '" + expectedMessage + "', actual message:"
+            + exception.getMessage());
+  }
 
   @Test
   public void deleteOrder() {

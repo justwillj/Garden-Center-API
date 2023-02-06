@@ -1,11 +1,13 @@
 package edu.midlands.training.controllers;
 
+import static edu.midlands.training.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_ORDERS;
 import static edu.midlands.training.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -65,4 +67,16 @@ class OrderControllerTest {
         .andExpect(expectedType)
         .andExpect(jsonPath("$.customerId", is(2)));
   }
-}
+
+  @Test
+  @DirtiesContext
+  void postNewOrder() throws Exception {
+    String json = "{\"customerId\":\"2\",\"date\":\"2019-12-22\",\"orderTotal\":\"23.43\",\"items\":{\"id\":1,\"productId\":\"1 \",\"quantity\":\"3\"}}";
+    this.mockMvc
+        .perform(post(CONTEXT_ORDERS)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(createdStatus)
+        .andExpect(expectedType);
+  }
+  }

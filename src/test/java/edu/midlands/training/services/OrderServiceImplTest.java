@@ -264,7 +264,7 @@ class OrderServiceImplTest {
   @Test
   public void updateOrderByIdDBError() {
     testOrder2.setItems(item2);
-    item2.setId(1L);
+    item2.setProductId(1L);
     when(orderRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
     assertThrows(ServiceUnavailable.class,
         () -> orderServiceImpl.updateOrderById(testOrder2 ,2L));
@@ -287,7 +287,7 @@ class OrderServiceImplTest {
   @Test
   public void updateOrderProductIdNotInSystem() {
     testOrder2.setItems(item3);
-    item3.setId(10L);
+    item3.setProductId(10L);
     when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
     Exception exception = assertThrows(BadDataResponse.class,
         () -> orderServiceImpl.updateOrderById(testOrder2,2L));
@@ -316,7 +316,7 @@ class OrderServiceImplTest {
   @Test
   public void updateOrderByIdNotFound() {
     testOrder2.setItems(item2);
-    item2.setId(1L);
+    item2.setProductId(2L);
     when(orderRepository.findById(anyLong())).thenReturn(Optional.empty());
 
     Exception exception = assertThrows(ResourceNotFound.class,

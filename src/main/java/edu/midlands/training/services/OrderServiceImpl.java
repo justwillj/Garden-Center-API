@@ -158,7 +158,7 @@ public class OrderServiceImpl implements OrderService {
       }
     }
     for (Product p : productRepository.findAll()) {
-      if (Objects.equals(order.getItems().getId(), p.getId())) {
+      if (Objects.equals(order.getItems().getProductId(), p.getId())) {
         productTest = true;
         break;
       }

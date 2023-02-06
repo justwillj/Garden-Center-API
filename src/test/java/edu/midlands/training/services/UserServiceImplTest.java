@@ -143,7 +143,7 @@ class UserServiceImplTest {
   @Test
   public void addUserInvalidRoles() {
     when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
-    Exception exception = assertThrows(ConflictData.class,
+    Exception exception = assertThrows(BadDataResponse.class,
         () -> userServiceImpl.addUser(testUser3));
     String expectedMessage = "Please use a valid role!";
     assertEquals(expectedMessage,

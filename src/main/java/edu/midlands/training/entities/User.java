@@ -5,6 +5,7 @@ import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.midlands.training.exceptions.ConflictData;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Pattern.Flag;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,13 +29,12 @@ public class User {
   private Long id;
 
   @NotBlank(message = "name"+ REQUIRED_FIELD)
+  @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input")
   private String name;
 
   @NotBlank(message = "title"+ REQUIRED_FIELD)
   private String title;
 
-//  @NotBlank(message = "roles"+ REQUIRED_FIELD)
-//  @Pattern(regexp = "EMPLOYEE|ADMIN")
   @NotEmpty(message = "roles"+ REQUIRED_FIELD)
   private String [] roles;
 
@@ -66,7 +67,7 @@ public class User {
   }
 
   public String getName() {
-    return name.trim();
+    return name;
   }
 
   public void setName(String name) {
@@ -74,7 +75,7 @@ public class User {
   }
 
   public String getTitle() {
-    return title.trim();
+    return title;
   }
 
   public void setTitle(String title) {
@@ -85,12 +86,12 @@ public class User {
     return roles;
   }
 
-  public void setRoles(String roles []) {
+  public void setRoles(String[] roles) {
     this.roles = roles;
   }
 
   public String getEmail() {
-    return email.trim();
+    return email;
   }
 
   public void setEmail(String email) {
@@ -98,7 +99,7 @@ public class User {
   }
 
   public String getPassword() {
-    return password.trim();
+    return password;
   }
 
   public void setPassword(String password) {
@@ -111,7 +112,7 @@ public class User {
         "id=" + id +
         ", name='" + name + '\'' +
         ", title='" + title + '\'' +
-        ", roles='" + roles + '\'' +
+        ", roles='" + Arrays.toString(roles) + '\'' +
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
         '}';

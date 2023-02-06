@@ -7,6 +7,7 @@ import static edu.midlands.training.constants.StringConstants.LOGGER_POST_REQUES
 import static edu.midlands.training.constants.StringConstants.LOGGER_PUT_REQUEST_RECEIVED;
 import static edu.midlands.training.constants.StringConstants.LOGGER_REQUEST_RECEIVED;
 
+import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
 import edu.midlands.training.services.UserService;
 import java.util.Date;
@@ -42,15 +43,16 @@ public class UserController {
   /**
    * give you all the users if you pass a null user or user matching an example with non-null user
    *
-   * @param users object which can have null or non-null fields, returns status 200
+   * @param user object which can have null or non-null fields, returns status 200
    * @return List of users
    */
   @GetMapping
-  public ResponseEntity<List<User>> queryUsers(User users) {
-    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + users.toString());
+  public ResponseEntity<List<User>> queryUsers(User user) {
+    logger.info(new Date() + LOGGER_REQUEST_RECEIVED + user.toString());
 
-    return new ResponseEntity<>(userService.queryUsers(users), HttpStatus.OK);
+    return new ResponseEntity<>(userService.queryUsers(user), HttpStatus.OK);
   }
+
 
   /**
    * Gets user by id.

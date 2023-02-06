@@ -1,5 +1,7 @@
 package edu.midlands.training.entities;
 
+import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -20,9 +22,9 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "name"+ REQUIRED_FIELD)
   private String name;
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "email" + REQUIRED_FIELD)
   @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Flag.CASE_INSENSITIVE)
   private String email;
 

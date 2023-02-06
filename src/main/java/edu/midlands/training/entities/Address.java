@@ -1,5 +1,7 @@
 package edu.midlands.training.entities;
 
+import static edu.midlands.training.constants.StringConstants.REQUIRED_FIELD;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import java.util.Set;
@@ -19,14 +21,14 @@ public class Address {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "street"+ REQUIRED_FIELD)
   private String street;
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "city"+ REQUIRED_FIELD)
   private String city;
-  @NotBlank(message = "type is a mandatory field")
+  @NotBlank(message = "state"+ REQUIRED_FIELD)
   @Pattern(regexp = "AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY")
   private String state;
-  @NotNull(message="numericField: positive number value is required")
+  @NotNull(message = "zipCode"+ REQUIRED_FIELD)
   @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$" )
   private String zipCode;
 

@@ -120,15 +120,18 @@ class OrderServiceImplTest {
     testList.add(testOrder3);
 
 
-    when(orderRepository.findAll()).thenReturn(testList);
+
     when(productRepository.findAll()).thenReturn(testProduct);
     when(customerRepository.findAll()).thenReturn(testCustomer);
+
     when(itemRepository.findAll()).thenReturn(testItem);
     when(itemRepository.findAll(any(Example.class))).thenReturn(testItem);
+    when(itemRepository.findById(any(Long.class))).thenReturn(Optional.of(testItem.get(0)));
+
+    when(orderRepository.findAll()).thenReturn(testList);
     when(orderRepository.findAll(any(Example.class))).thenReturn(testList);
     when(orderRepository.findById(any(Long.class))).thenReturn(Optional.of(testList.get(0)));
     when(orderRepository.save(any(Order.class))).thenReturn(testList.get(0));
-
     when(orderRepository.saveAll(anyCollection())).thenReturn(testList);
 
   }

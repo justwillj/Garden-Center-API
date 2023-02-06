@@ -64,6 +64,12 @@ public class CustomerController {
     return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
   }
 
+  /**
+   * Adds a new customer to the database.
+   *
+   * @param customer the customer from the request body being added
+   * @return the customer if everything is correctly added
+   */
   @PostMapping
   public ResponseEntity<Customer> save(@Valid @RequestBody Customer customer) {
     logger.info(new Date() + LOGGER_POST_REQUEST_RECEIVED);
@@ -71,6 +77,13 @@ public class CustomerController {
     return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.CREATED);
   }
 
+  /**
+   * Update customer by id
+   *
+   * @param id  the id of the customer to be updated from the path variable
+   * @param customer the customer's new information from the request body
+   * @return the customer if input and data is correct
+   */
   @PutMapping(value = "/{id}")
   public ResponseEntity<Customer> updateCustomerById(
       @PathVariable Long id, @Valid @RequestBody Customer customer) {
@@ -79,6 +92,12 @@ public class CustomerController {
     return new ResponseEntity<>(customerService.updateCustomerById(customer,id), HttpStatus.OK);
   }
 
+
+  /**
+   * Delete customer by id.
+   *
+   * @param id the customer's id from the path variable
+   */
   @DeleteMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteCustomer(@PathVariable Long id) {

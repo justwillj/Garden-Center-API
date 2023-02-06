@@ -75,7 +75,6 @@ class ProductControllerTest {
   }
 
   @Test
-  @DirtiesContext
   void postNewProduct() throws Exception {
     Product product1 = new Product("TE-46223","Shoes","Leather Platform","Really cool shoes!","Dr. Martens"
         ,new BigDecimal("26.10"));

@@ -54,11 +54,11 @@ class CustomerServiceImplTest {
   void setUp() {
     MockitoAnnotations.openMocks(this);
 
-    testCustomer1 = new Customer("John","john@gmail.com",testAddress1);
-    testCustomer2 = new Customer("Jake","jake@gmail.com",testAddress2);
-    testCustomer3 = new Customer("John","john@gmail.com",testAddress1);
-    testAddress1 = new Address("1169 Boone Crockett Lane","Olympia","WA","98501");
-    testAddress2 = new Address("4021 Cedar Street","Batesville","AR","72501-1234");
+    testCustomer1 = new Customer("John", "john@gmail.com", testAddress1);
+    testCustomer2 = new Customer("Jake", "jake@gmail.com", testAddress2);
+    testCustomer3 = new Customer("John", "john@gmail.com", testAddress1);
+    testAddress1 = new Address("1169 Boone Crockett Lane", "Olympia", "WA", "98501");
+    testAddress2 = new Address("4021 Cedar Street", "Batesville", "AR", "72501-1234");
 
     testCustomer1.setId(1L);
     testCustomer2.setId(2L);
@@ -84,7 +84,7 @@ class CustomerServiceImplTest {
   @Test
   void queryAllCustomerWithSample() {
     List<Customer> results = customerServiceImpl.queryCustomers(testCustomer1);
-    assertEquals(testList,results);
+    assertEquals(testList, results);
   }
 
 
@@ -105,8 +105,7 @@ class CustomerServiceImplTest {
   @Test
   public void getCustomerDBError() {
     when(customerRepository.findById(anyLong())).thenThrow(EmptyResultDataAccessException.class);
-    assertThrows(ServiceUnavailable.class,
-        () -> customerServiceImpl.getCustomer(1L));
+    assertThrows(ServiceUnavailable.class, () -> customerServiceImpl.getCustomer(1L));
   }
 
   @Test
@@ -115,8 +114,7 @@ class CustomerServiceImplTest {
     Exception exception = assertThrows(ResourceNotFound.class,
         () -> customerServiceImpl.getCustomer(1L));
     String expectedMessage = "Could not locate a Customer with the id: 1";
-    assertEquals(expectedMessage,
-        exception.getMessage(),
+    assertEquals(expectedMessage, exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
@@ -131,8 +129,7 @@ class CustomerServiceImplTest {
   public void addCustomerDBError() {
     when(customerRepository.save(any(Customer.class))).thenThrow(
         new EmptyResultDataAccessException("Database unavailable", 0));
-    assertThrows(ServiceUnavailable.class,
-        () -> customerServiceImpl.addCustomer(testCustomer2));
+    assertThrows(ServiceUnavailable.class, () -> customerServiceImpl.addCustomer(testCustomer2));
   }
 
   @Test
@@ -141,8 +138,7 @@ class CustomerServiceImplTest {
     Exception exception = assertThrows(ConflictData.class,
         () -> customerServiceImpl.addCustomer(testCustomer1));
     String expectedMessage = "This email is already in use!";
-    assertEquals(expectedMessage,
-        exception.getMessage(),
+    assertEquals(expectedMessage, exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
@@ -167,8 +163,7 @@ class CustomerServiceImplTest {
     Exception exception = assertThrows(ConflictData.class,
         () -> customerServiceImpl.updateCustomerById(testCustomer3, 3L).setEmail("josh@gmail.com"));
     String expectedMessage = "This email is already in use!";
-    assertEquals(expectedMessage,
-        exception.getMessage(),
+    assertEquals(expectedMessage, exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
@@ -178,8 +173,7 @@ class CustomerServiceImplTest {
     Exception exception = assertThrows(BadDataResponse.class,
         () -> customerServiceImpl.updateCustomerById(testCustomer1, 2L));
     String expectedMessage = "Customer ID must match the ID specified in the URL";
-    assertEquals(expectedMessage,
-        exception.getMessage(),
+    assertEquals(expectedMessage, exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
@@ -191,8 +185,7 @@ class CustomerServiceImplTest {
     Exception exception = assertThrows(ResourceNotFound.class,
         () -> customerServiceImpl.updateCustomerById(testCustomer2, 2L));
     String expectedMessage = "Could not locate a Customer with the id: 2";
-    assertEquals(expectedMessage,
-        exception.getMessage(),
+    assertEquals(expectedMessage, exception.getMessage(),
         () -> "Message did not equal '" + expectedMessage + "', actual message:"
             + exception.getMessage());
   }
@@ -208,15 +201,13 @@ class CustomerServiceImplTest {
   public void deleteCustomerBadID() {
     doThrow(new ResourceNotFound("Database unavailable")).when(customerRepository)
         .deleteById(anyLong());
-    assertThrows(ResourceNotFound.class,
-        () -> customerServiceImpl.deleteCustomer(1L));
+    assertThrows(ResourceNotFound.class, () -> customerServiceImpl.deleteCustomer(1L));
   }
 
   @Test
   public void deleteCustomerDBError() {
     doThrow(new ServiceUnavailable("Database unavailable")).when(customerRepository)
         .existsById(anyLong());
-    assertThrows(ServiceUnavailable.class,
-        () -> customerServiceImpl.deleteCustomer(1L));
+    assertThrows(ServiceUnavailable.class, () -> customerServiceImpl.deleteCustomer(1L));
   }
 }

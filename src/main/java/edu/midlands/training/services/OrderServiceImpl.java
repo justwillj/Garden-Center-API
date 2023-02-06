@@ -17,6 +17,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -143,6 +144,8 @@ public class OrderServiceImpl implements OrderService{
     BigDecimal rounded = order.getOrderTotal().setScale(2, RoundingMode.CEILING);
     order.setOrderTotal(rounded);
 
+
+
     boolean customerTest = false;
     boolean productTest = false;
 
@@ -153,7 +156,7 @@ public class OrderServiceImpl implements OrderService{
       }
     }
     for (Product p :productRepository.findAll()){
-      if (Objects.equals(order.getItems().getProductId(), p.getId())) {
+      if (Objects.equals(order.getItems().getId(), p.getId())) {
         productTest = true;
         break;
       }
@@ -201,11 +204,5 @@ public class OrderServiceImpl implements OrderService{
 
     // if we made it down to this pint, we did not find the Pet
     throw new ResourceNotFound("Could not locate a Order with the id: " + id);
-  }
-
-  public static Optional<Long> safeGreetOptionalWay(Order order) {
-    return Optional.ofNullable(order)
-        .map(Order::getItems)
-        .map(Item::getId);
   }
 }

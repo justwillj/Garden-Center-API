@@ -1,5 +1,6 @@
 package edu.midlands.training.services;
 
+import edu.midlands.training.entities.Product;
 import edu.midlands.training.entities.User;
 import edu.midlands.training.exceptions.BadDataResponse;
 import edu.midlands.training.exceptions.ConflictData;
@@ -37,8 +38,8 @@ public class UserServiceImpl implements UserService {
       if (user.isEmpty()) {
         return userRepository.findAll();
       } else {
-        Example<User> usersExample = Example.of(user);
-        return userRepository.findAll(usersExample);
+        Example<User> userExample = Example.of(user);
+        return userRepository.findAll(userExample);
       }
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserService {
 
     if (!Arrays.equals(user.getRoles(), employee)){
       if (!Arrays.equals(user.getRoles(), admin)){
-        throw new ConflictData("Please use a valid role!");
+        throw new BadDataResponse("Please use a valid role!");
       }
     }
       //Checks to see if the email is already taken and if so throws an exceptions

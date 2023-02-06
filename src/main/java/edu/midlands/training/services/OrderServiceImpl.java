@@ -137,7 +137,7 @@ public class OrderServiceImpl implements OrderService{
   @Override
   public Order updateOderById(Order order, Long id) {
     // first, check to make sure the id passed matches the id in the Pet passed
-    if (!order.getId().equals(id)) {
+    if (!Objects.equals(order.getId(), id)) {
       throw new BadDataResponse("Order ID must match the ID specified in the URL");
     }
     BigDecimal rounded = order.getOrderTotal().setScale(2, RoundingMode.CEILING);

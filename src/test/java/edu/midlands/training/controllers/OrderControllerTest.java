@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -79,4 +80,17 @@ class OrderControllerTest {
         .andExpect(createdStatus)
         .andExpect(expectedType);
   }
+
+  @Test
+  void putOrder() throws Exception {
+    String json = "{\"id\":1,\"customerId\":\"2\",\"date\":\"2019-12-22\",\"orderTotal\":\"23.43\",\"items\":{\"id\":1,\"productId\":\"1 \",\"quantity\":\"3\"}}";
+    this.mockMvc
+        .perform(put(CONTEXT_ORDERS + "/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(okStatus)
+        .andExpect(expectedType)
+        .andExpect(jsonPath("$.date", is("2019-12-22")));
   }
+
+}

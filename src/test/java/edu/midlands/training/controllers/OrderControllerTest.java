@@ -6,6 +6,7 @@ import static edu.midlands.training.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -91,6 +92,13 @@ class OrderControllerTest {
         .andExpect(okStatus)
         .andExpect(expectedType)
         .andExpect(jsonPath("$.date", is("2019-12-22")));
+  }
+
+  @Test
+  void deleteProduct() throws Exception {
+    mockMvc
+        .perform(delete(CONTEXT_ORDERS + "/2"))
+        .andExpect(deletedStatus);
   }
 
 }

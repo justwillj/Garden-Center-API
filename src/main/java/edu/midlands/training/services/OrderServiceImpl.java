@@ -1,13 +1,11 @@
 package edu.midlands.training.services;
 
 import edu.midlands.training.entities.Customer;
-import edu.midlands.training.entities.Order;
 import edu.midlands.training.entities.Item;
+import edu.midlands.training.entities.Order;
 
 import edu.midlands.training.entities.Product;
-import edu.midlands.training.entities.User;
 import edu.midlands.training.exceptions.BadDataResponse;
-import edu.midlands.training.exceptions.ConflictData;
 import edu.midlands.training.exceptions.ResourceNotFound;
 import edu.midlands.training.exceptions.ServiceUnavailable;
 import edu.midlands.training.repositories.CustomerRepository;
@@ -16,16 +14,11 @@ import edu.midlands.training.repositories.OrderRepository;
 import edu.midlands.training.repositories.ProductRepository;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -210,4 +203,9 @@ public class OrderServiceImpl implements OrderService{
     throw new ResourceNotFound("Could not locate a Order with the id: " + id);
   }
 
+  public static Optional<Long> safeGreetOptionalWay(Order order) {
+    return Optional.ofNullable(order)
+        .map(Order::getItems)
+        .map(Item::getId);
+  }
 }

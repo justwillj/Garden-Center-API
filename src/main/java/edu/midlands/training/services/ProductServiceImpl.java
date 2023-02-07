@@ -106,19 +106,19 @@ public class ProductServiceImpl implements ProductService {
     BigDecimal rounded = product.getPrice().setScale(2, RoundingMode.CEILING);
     product.setPrice(rounded);
 
-      // first, check to make sure the id passed matches the id in the Pet passed
+      // first, check to make sure the id passed matches the id in the Product passed
       if (!product.getId().equals(id)) {
         logger.error("Product ID must match the ID specified in the URL");
         throw new BadDataResponse("Product ID must match the ID specified in the URL");
       }
 
-      //If the id of the user we are updating and the endpoint id match, allows the user to keep its
-      //current email when updating
+      //If the id of the product we are updating and the endpoint id match, allows the product to keep its
+      //current sku when updating
       for (Product p: productRepository.findAll()){
         if (Objects.equals(product.getId(), p.getId()) && Objects.equals(product.getSku(), p.getSku())){
           return productRepository.save(product);
         }
-        //Checks to see if the email is already taken and if so throws an exceptions
+        //Checks to see if the sku is already taken and if so throws an exceptions
         if (Objects.equals(p.getSku(), product.getSku())){
           logger.error("This sku is already in use!");
           throw new ConflictData("This sku is already in use!");

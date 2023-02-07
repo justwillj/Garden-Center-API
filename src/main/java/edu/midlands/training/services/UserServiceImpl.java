@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(userExample);
       }
     } catch (Exception e) {
+//      logger.error();
       throw new ServiceUnavailable(e);
     }
   }

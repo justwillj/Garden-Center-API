@@ -102,11 +102,18 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
 
   </dependencies>
   <description>Garden-Center-API</description>
@@ -114,11 +121,14 @@
   <modelVersion>4.0.0</modelVersion>
   <name>Garden-Center-API</name>
 
-  <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <relativePath/>
-    <version>2.6.5</version> <!-- lookup parent from repository -->
+
+
+
+      <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <relativePath/>
+        <version>2.6.5</version> <!-- lookup parent from repository -->
   </parent>
 
 

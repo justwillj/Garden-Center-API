@@ -45,6 +45,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
   }
 
+
+  /**
+   * Lookup a Customer by its id.
+   *
+   * @param id - the id to lookup
+   * @return the customer that matches the id
+   */
   @Override
   public Customer getCustomer(Long id) {
     try {
@@ -60,6 +67,12 @@ public class CustomerServiceImpl implements CustomerService {
     throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
   }
 
+  /**
+   * Adds a new Customer to the database.
+   *
+   * @param customer - the customer that will be added to the database.
+   * @return the new customer if the required fields are inputted correctly
+   */
   @Override
   public Customer addCustomer(Customer customer) {
 
@@ -76,6 +89,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
   }
 
+  /**
+   * Update an existing Customer in the database.
+   *
+   * @param id  - the id of the customer to update.
+   * @param customer - the Customer information to update.
+   * @return the updated customer if done correctly
+   */
   @Override
   public Customer updateCustomerById(Customer customer, Long id) {
     // first, check to make sure the id passed matches the id in the Pet passed
@@ -105,6 +125,11 @@ public class CustomerServiceImpl implements CustomerService {
     throw new ResourceNotFound("Could not locate a Customer with the id: " + id);
   }
 
+  /**
+   * Delete a Customer from the database.
+   *
+   * @param id - the id of the customer to be deleted.
+   */
   @Override
   public void deleteCustomer(Long id) {
     try {

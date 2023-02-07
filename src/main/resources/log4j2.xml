@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Properties>
+    <Property name="Garden-Center">log/application.log</Property>
+  </Properties>
+
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout
+        disableAnsi="false"
+        pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"/>
+    </Console>
+
+    <RollingFile fileName="./logs/logger-application.log"
+      filePattern="./logs/$${date:yyyy-MM}/logger-application-%d{-dd-MMMM-yyyy}-%i.log.txt"
+      name="RollingFile">
+      <PatternLayout>
+        <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <!-- rollover on startup, daily and when the file reaches
+            10 MegaBytes -->
+        <OnStartupTriggeringPolicy/>
+        <SizeBasedTriggeringPolicy
+          size="10 MB"/>
+        <TimeBasedTriggeringPolicy/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <!-- LOG everything at INFO level -->
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingFile"/>
+    </Root>
+
+    <!-- LOG this package at TRACE level -->
+    <!-- Because this is more specific, it overrides the root level specification for this package only -->
+    <Logger level="trace" name="io.catalyte.training.logging.controllers"></Logger>
+  </Loggers>
+
+</Configuration>

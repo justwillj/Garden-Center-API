@@ -1,0 +1,38 @@
+2023-02-06 18:53:02,800 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2023-02-06 18:53:02,830 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AppRunner using Java 19.0.1 on LAPTOP-S8MQOBHF with PID 1236 (C:\Users\willi\Desktop\Code\Mod 4\garden-center-api\target\classes started by willi in C:\Users\willi\Desktop\Code\Mod 4\garden-center-api)
+2023-02-06 18:53:02,836 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-06 18:53:02,885 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-06 18:53:02,885 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-06 18:53:03,776 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-06 18:53:03,953 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 167 ms. Found 6 JPA repository interfaces.
+2023-02-06 18:53:04,632 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-06 18:53:04,725 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1839 ms
+2023-02-06 18:53:05,003 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/postgres'
+2023-02-06 18:53:05,143 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-06 18:53:05,227 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.7.Final
+2023-02-06 18:53:05,432 INFO o.h.a.c.r.j.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-06 18:53:05,544 INFO o.h.d.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-06 18:53:06,238 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,238 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "customer" does not exist, skipping
+2023-02-06 18:53:06,238 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,239 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "order" does not exist, skipping
+2023-02-06 18:53:06,240 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,240 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "user" does not exist, skipping
+2023-02-06 18:53:06,240 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,241 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "address" does not exist, skipping
+2023-02-06 18:53:06,241 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,241 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "customer" does not exist, skipping
+2023-02-06 18:53:06,242 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,242 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "item" does not exist, skipping
+2023-02-06 18:53:06,242 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,242 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "order" does not exist, skipping
+2023-02-06 18:53:06,242 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-06 18:53:06,243 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "product" does not exist, skipping
+2023-02-06 18:53:06,319 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-06 18:53:06,327 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-06 18:53:06,873 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-06 18:53:07,307 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-06 18:53:07,351 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-06 18:53:07,361 INFO o.s.b.StartupInfoLogger [restartedMain] Started AppRunner in 4.915 seconds (JVM running for 7.983)
+2023-02-06 18:56:42,399 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-06 18:56:42,399 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [SpringApplicationShutdownHook] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'

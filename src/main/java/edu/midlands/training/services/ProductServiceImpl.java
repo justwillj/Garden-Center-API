@@ -28,6 +28,13 @@ public class ProductServiceImpl implements ProductService {
   private ProductRepository productRepository;
 
 
+  /**
+   * This method will take a product as an optional parameter. If the product is given then it will create
+   * a query by example. If nothing is given then we will get all product.
+   *
+   * @param product - any provided fields will be converted to an exact match AND queried
+   * @return a list of products that match the query, if not supplied then all the products in the database
+   */
   @Override
   public List<Product> queryProducts(Product product) {
     try {

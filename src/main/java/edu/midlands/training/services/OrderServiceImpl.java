@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
 
   /**
-   * This method will take an order as an optional parameter. If the user is given then it will
+   * This method will take an order as an optional parameter. If the order is given then it will
    * create a query by example. If nothing is given then we will get all orders.
    *
    * @param order - any provided fields will be converted to an exact match AND queried

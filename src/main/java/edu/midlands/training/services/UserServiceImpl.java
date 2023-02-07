@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(userExample);
       }
     } catch (Exception e) {
-//      logger.error();
+      logger.error("Could not get user" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -62,9 +62,11 @@ public class UserServiceImpl implements UserService {
         return user;
       }
     } catch (Exception e) {
+      logger.error("Could not get user" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the User
+    logger.error("Could not locate the user with the id"+ id);
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 
@@ -81,18 +83,21 @@ public class UserServiceImpl implements UserService {
 
     if (!Arrays.equals(user.getRoles(), employee)){
       if (!Arrays.equals(user.getRoles(), admin)){
+        logger.error("Please use a valid role!");
         throw new BadDataResponse("Please use a valid role!");
       }
     }
       //Checks to see if the email is already taken and if so throws an exceptions
       for (User u : userRepository.findAll()) {
         if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
+          logger.error("This email is already in use!");
           throw new ConflictData("This email is already in use!");
         }
       }
       try {
         return userRepository.save(user);
       } catch (Exception e) {
+        logger.error("Could not add the user" + e.getMessage());
         throw new ServiceUnavailable(e);
       }
 
@@ -107,8 +112,9 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   public User updateUserById(User user,Long id) {
-    // first, check to make sure the id passed matches the id in the Pet passed
+    // first, check to make sure the id passed matches the id in the User passed
     if (!user.getId().equals(id)) {
+      logger.error("User ID must match the ID specified in the URL");
       throw new BadDataResponse("User ID must match the ID specified in the URL");
     }
     String[] employee = new String[]{"EMPLOYEE"};
@@ -116,6 +122,7 @@ public class UserServiceImpl implements UserService {
 
     if (!Arrays.equals(user.getRoles(), employee)){
       if (!Arrays.equals(user.getRoles(), admin)){
+        logger.error("Please use a valid role!");
         throw new BadDataResponse("Please use a valid role!");
       }
     }
@@ -128,6 +135,7 @@ public class UserServiceImpl implements UserService {
       }
       //Checks to see if the email is already taken and if so throws an exceptions
       if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
+        logger.error("This email is already in use!");
         throw new ConflictData("This email is already in use!");
       }
     }
@@ -138,9 +146,11 @@ public class UserServiceImpl implements UserService {
       }
 
     } catch (Exception e) {
+      logger.error("Could not update user" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the User
+    logger.error("Could not locate a User with the id:"+ id);
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 
@@ -157,10 +167,12 @@ public class UserServiceImpl implements UserService {
         return;
       }
     } catch (Exception e) {
+      logger.error("Could not delete the user" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
 
     // if we made it down to this pint, we did not find the Pet
+    logger.error("Could not locate a User with the id: " + id);
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 }

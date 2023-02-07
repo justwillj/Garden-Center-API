@@ -13,12 +13,16 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+  private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
   @Autowired
   private ProductRepository productRepository;
@@ -34,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(productExample);
       }
     } catch (Exception e) {
+      logger.error("Could not get products" +e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -54,9 +59,11 @@ public class ProductServiceImpl implements ProductService {
         return product;
       }
     } catch (Exception e) {
+      logger.error("Could not get product" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the Pet
+    logger.error("Could not locate a Product with the id:" + id);
     throw new ResourceNotFound("Could not locate a Product with the id: " + id);
   }
 
@@ -73,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
 
     for (Product p: productRepository.findAll()){
       if (Objects.equals(p.getSku(), product.getSku())){
+        logger.error("This sku is already in use!");
         throw new ConflictData("This sku is already in use!");
       }
     }
@@ -80,6 +88,7 @@ public class ProductServiceImpl implements ProductService {
     try {
       return productRepository.save(product);
     } catch (Exception e) {
+      logger.error("Could not add product" +e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -99,6 +108,7 @@ public class ProductServiceImpl implements ProductService {
 
       // first, check to make sure the id passed matches the id in the Pet passed
       if (!product.getId().equals(id)) {
+        logger.error("Product ID must match the ID specified in the URL");
         throw new BadDataResponse("Product ID must match the ID specified in the URL");
       }
 
@@ -110,6 +120,7 @@ public class ProductServiceImpl implements ProductService {
         }
         //Checks to see if the email is already taken and if so throws an exceptions
         if (Objects.equals(p.getSku(), product.getSku())){
+          logger.error("This sku is already in use!");
           throw new ConflictData("This sku is already in use!");
         }
       }
@@ -119,9 +130,11 @@ public class ProductServiceImpl implements ProductService {
           return productRepository.save(product);
         }
       } catch (Exception e) {
+        logger.error("Could not update product" + e.getMessage());
         throw new ServiceUnavailable(e);
       }
       // if we made it down to this pint, we did not find the Product
+      logger.error("Could not locate a Product with the id: " + id);
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 
@@ -138,10 +151,12 @@ public class ProductServiceImpl implements ProductService {
           return;
         }
       } catch (Exception e) {
+        logger.error("Could not delete product" + e.getMessage());
         throw new ServiceUnavailable(e);
       }
 
-      // if we made it down to this pint, we did not find the Pet
+      // if we made it down to this pint, we did not find the Product
+      logger.error("Could not locate a Product with the id: " + id);
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 

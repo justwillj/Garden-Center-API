@@ -39,7 +39,8 @@ public class CustomerController {
   private CustomerService customerService;
 
   /**
-   * give you all the customers if you pass a null user or user matching an example with non-null customer
+   * gives you all the customers if you pass a null customer or customer matching an example with
+   * non-null customer
    *
    * @param customer object which can have null or non-null fields, returns status 200
    * @return List of customers
@@ -80,7 +81,7 @@ public class CustomerController {
   /**
    * Update customer by id
    *
-   * @param id  the id of the customer to be updated from the path variable
+   * @param id       the id of the customer to be updated from the path variable
    * @param customer the customer's new information from the request body
    * @return the customer if input and data is correct
    */
@@ -89,7 +90,7 @@ public class CustomerController {
       @PathVariable Long id, @Valid @RequestBody Customer customer) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(customerService.updateCustomerById(customer,id), HttpStatus.OK);
+    return new ResponseEntity<>(customerService.updateCustomerById(customer, id), HttpStatus.OK);
   }
 
 

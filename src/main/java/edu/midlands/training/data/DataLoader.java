@@ -20,6 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * This will load data into your database to allow for testing of each of the endpoints to make sure
+ * our CRUD is working
+ */
 @Component
 public class DataLoader implements CommandLineRunner {
 

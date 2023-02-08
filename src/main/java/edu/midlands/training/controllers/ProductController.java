@@ -40,8 +40,8 @@ public class ProductController {
   private ProductService productService;
 
   /**
-   * give you all the products if you pass a null user or user matching an example with non-null
-   * product
+   * give you all the products if you pass a null product or product matching an example with
+   * non-null product
    *
    * @param product object which can have null or non-null fields, returns status 200
    * @return List of products
@@ -70,7 +70,7 @@ public class ProductController {
   /**
    * Adds a new product to the database.
    *
-   * @param product the user from the request body being added
+   * @param product the product from the request body being added
    * @return the product if everything is correctly added
    */
   @PostMapping

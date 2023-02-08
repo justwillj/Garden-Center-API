@@ -16,6 +16,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern.Flag;
 
+/**
+ * This contains all the proprieties and basic validation for our Customer entities
+ */
 @Entity
 public class Customer {
 

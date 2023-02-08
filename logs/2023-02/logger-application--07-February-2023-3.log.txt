@@ -1,0 +1,45 @@
+2023-02-07 20:18:11,474 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2023-02-07 20:18:11,510 INFO o.s.b.StartupInfoLogger [restartedMain] Starting AppRunner using Java 19.0.1 on JustinPC with PID 35176 (C:\Users\Justin\Desktop\code\Mod 4\garden-center-api\target\classes started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-07 20:18:11,514 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:18:11,561 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-07 20:18:11,562 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-07 20:18:12,339 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:18:12,501 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 152 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:18:13,185 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-07 20:18:13,303 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1739 ms
+2023-02-07 20:18:13,522 INFO o.s.b.a.h.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/postgres'
+2023-02-07 20:18:13,662 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:18:13,729 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.7.Final
+2023-02-07 20:18:13,939 INFO o.h.a.c.r.j.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-07 20:18:14,063 INFO o.h.d.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-07 20:18:14,763 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,763 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "customer" does not exist, skipping
+2023-02-07 20:18:14,763 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,764 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "order" does not exist, skipping
+2023-02-07 20:18:14,764 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,764 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "user" does not exist, skipping
+2023-02-07 20:18:14,765 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,765 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "address" does not exist, skipping
+2023-02-07 20:18:14,765 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,766 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "customer" does not exist, skipping
+2023-02-07 20:18:14,766 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,766 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "item" does not exist, skipping
+2023-02-07 20:18:14,767 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,767 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "order" does not exist, skipping
+2023-02-07 20:18:14,767 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-02-07 20:18:14,767 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "product" does not exist, skipping
+2023-02-07 20:18:14,831 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:18:14,839 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:18:15,302 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:18:15,628 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-07 20:18:15,666 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-07 20:18:15,677 INFO o.s.b.StartupInfoLogger [restartedMain] Started AppRunner in 4.612 seconds (JVM running for 5.752)
+2023-02-07 20:19:11,708 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-07 20:19:11,709 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-02-07 20:19:53,802 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [edu.midlands.training.exceptions.ResourceNotFound: Could not locate a Order with the id: 200]
+2023-02-07 20:20:16,198 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-7] Resolved [edu.midlands.training.exceptions.ResourceNotFound: Could not locate a User with the id: 200]
+2023-02-07 20:20:53,828 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [edu.midlands.training.exceptions.ResourceNotFound: Could not locate a Product with the id: 100000]
+2023-02-07 20:20:58,580 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-9] Resolved [edu.midlands.training.exceptions.ResourceNotFound: Could not locate a Product with the id: 100]
+2023-02-07 20:21:22,783 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-2] Resolved [edu.midlands.training.exceptions.ResourceNotFound: Could not locate a User with the id: 200]
+2023-02-07 20:21:59,316 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [edu.midlands.training.exceptions.ConflictData: This email is already in use!]
+2023-02-07 20:22:15,122 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [edu.midlands.training.exceptions.BadDataResponse: Please use a valid role!]

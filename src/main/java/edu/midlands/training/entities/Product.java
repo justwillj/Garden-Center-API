@@ -18,6 +18,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+/**
+ * This contains all the proprieties and basic validation for our Product entities
+ */
 @Entity
 public class Product {
 

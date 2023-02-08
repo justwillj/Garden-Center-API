@@ -21,6 +21,9 @@ import javax.validation.constraints.Pattern.Flag;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * This contains all the proprieties and basic validation for our User entities
+ */
 @Entity
 @Table(name = "\"User\"")
 public class User {

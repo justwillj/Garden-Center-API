@@ -45,7 +45,7 @@ public class OrderController {
 
   /**
    * give you all the orders if you pass a null order or order matching an example with non-null
-   * product
+   * order
    *
    * @param order object which can have null or non-null fields, returns status 200
    * @return List of orders

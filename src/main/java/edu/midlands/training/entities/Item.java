@@ -16,6 +16,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.aspectj.weaver.ast.Or;
 
+/**
+ * This contains all the proprieties and basic validation for our Item entities
+ */
 @Entity
 public class Item {
 

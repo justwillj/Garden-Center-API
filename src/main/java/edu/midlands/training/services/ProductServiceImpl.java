@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
       logger.error("Could not get product" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
-    // if we made it down to this pint, we did not find the Pet
+    // if we made it down to this pint, we did not find the Product
     logger.error("Could not locate a Product with the id:" + id);
     throw new ResourceNotFound("Could not locate a Product with the id: " + id);
   }
@@ -78,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
   /**
    * Adds a new Product to the database.
    *
-   * @param product - the user that will be added to the database.
+   * @param product - the product that will be added to the database.
    * @return the new product if the required fields are inputted correctly
    */
   @Override

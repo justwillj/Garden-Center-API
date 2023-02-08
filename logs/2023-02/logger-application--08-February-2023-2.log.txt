@@ -1,0 +1,306 @@
+2023-02-08 01:14:40,536 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [edu.midlands.training.controllers.OrderControllerTest], using SpringBootContextLoader
+2023-02-08 01:14:40,553 INFO o.s.t.c.s.AbstractContextLoader [main] Could not detect default resource locations for test class [edu.midlands.training.controllers.OrderControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-02-08 01:14:40,554 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [edu.midlands.training.controllers.OrderControllerTest]: OrderControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-02-08 01:14:40,764 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration edu.midlands.training.AppRunner for test class edu.midlands.training.controllers.OrderControllerTest
+2023-02-08 01:14:40,935 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-02-08 01:14:40,962 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4aa3d36, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2d140a7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@347bdeef, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2aa27288, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7f34a967, org.springframework.test.context.support.DirtiesContextTestExecutionListener@77e80a5e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1d8e2eea, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@240139e1, org.springframework.test.context.event.EventPublishingTestExecutionListener@7ea4d397, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@49298ce7, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@253c1256, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@8dfe921, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@503fbbc6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@55f45b92, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@109f5dd8]
+2023-02-08 01:14:41,623 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2023-02-08 01:14:41,670 INFO o.s.b.StartupInfoLogger [main] Starting OrderControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:41,675 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:42,620 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:42,865 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 231 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:43,698 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:43,770 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
+2023-02-08 01:14:43,999 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-08 01:14:44,500 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:45,788 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:45,801 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:46,915 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:47,800 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:47,800 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:47,802 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:47,931 INFO o.s.b.StartupInfoLogger [main] Started OrderControllerTest in 6.71 seconds (JVM running for 9.801)
+2023-02-08 01:14:48,214 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:48,217 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:48,218 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:48,626 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:48,627 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:48,627 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:48,678 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:48,679 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:48,680 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:48,785 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:48,786 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:48,917 INFO o.s.b.StartupInfoLogger [main] Starting OrderControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:48,918 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:49,181 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:49,220 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 38 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:49,422 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:49,492 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:49,605 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,605 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:49,606 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,606 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:49,607 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,607 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:49,607 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,608 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:49,608 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,608 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:49,609 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,609 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:49,610 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,610 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:49,611 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:49,611 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:49,686 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:49,687 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:50,066 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:50,415 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:50,415 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:50,416 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:50,431 INFO o.s.b.StartupInfoLogger [main] Started OrderControllerTest in 1.588 seconds (JVM running for 12.301)
+2023-02-08 01:14:50,499 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:50,500 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:50,501 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:50,521 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:50,521 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:50,522 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:50,566 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:50,566 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:50,612 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [edu.midlands.training.controllers.UserControllerTest], using SpringBootContextLoader
+2023-02-08 01:14:50,613 INFO o.s.t.c.s.AbstractContextLoader [main] Could not detect default resource locations for test class [edu.midlands.training.controllers.UserControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-02-08 01:14:50,613 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [edu.midlands.training.controllers.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-02-08 01:14:50,616 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration edu.midlands.training.AppRunner for test class edu.midlands.training.controllers.UserControllerTest
+2023-02-08 01:14:50,617 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-02-08 01:14:50,618 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1ec8afc4, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7cc8fd4b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5c516cab, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@21f8aa9c, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7a1587e8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@410c1f44, org.springframework.test.context.transaction.TransactionalTestExecutionListener@16ef07fa, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7227e3f1, org.springframework.test.context.event.EventPublishingTestExecutionListener@245b009a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@50ccd6a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6bb2dae6, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@26c7940a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5a640f98, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@39e0fe23, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@44f86613]
+2023-02-08 01:14:50,686 INFO o.s.b.StartupInfoLogger [main] Starting UserControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:50,687 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:50,957 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:50,997 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 39 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:51,138 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:51,206 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:51,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,324 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:51,325 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,326 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:51,327 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,327 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:51,328 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,328 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:51,329 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,329 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:51,330 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,330 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:51,331 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,332 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:51,333 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:51,333 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:51,416 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:51,417 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:51,758 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:52,093 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:52,094 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:52,094 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:52,108 INFO o.s.b.StartupInfoLogger [main] Started UserControllerTest in 1.487 seconds (JVM running for 13.978)
+2023-02-08 01:14:52,177 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:52,177 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:52,178 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:52,219 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:52,219 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:52,317 INFO o.s.b.StartupInfoLogger [main] Starting UserControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:52,319 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:52,508 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:52,545 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 36 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:52,717 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:52,788 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:52,890 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,891 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:52,891 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,891 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:52,892 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,892 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:52,892 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,892 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:52,893 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,893 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:52,893 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,894 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:52,894 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,894 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:52,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:52,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:52,966 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:52,966 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:53,313 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:53,651 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:53,651 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:53,651 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:53,669 INFO o.s.b.StartupInfoLogger [main] Started UserControllerTest in 1.406 seconds (JVM running for 15.54)
+2023-02-08 01:14:53,783 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:53,783 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:53,783 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:53,809 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:53,810 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:53,810 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:53,822 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:53,822 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:53,822 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:53,830 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:53,831 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:53,831 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:53,841 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:53,841 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:53,880 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [edu.midlands.training.controllers.ProductControllerTest], using SpringBootContextLoader
+2023-02-08 01:14:53,881 INFO o.s.t.c.s.AbstractContextLoader [main] Could not detect default resource locations for test class [edu.midlands.training.controllers.ProductControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-02-08 01:14:53,881 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [edu.midlands.training.controllers.ProductControllerTest]: ProductControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-02-08 01:14:53,883 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration edu.midlands.training.AppRunner for test class edu.midlands.training.controllers.ProductControllerTest
+2023-02-08 01:14:53,884 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-02-08 01:14:53,884 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2d260f2a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@79ac02a9, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2b8502e7, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@37669c4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1e3469df, org.springframework.test.context.support.DirtiesContextTestExecutionListener@79499fa, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48531d5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@340d50c8, org.springframework.test.context.event.EventPublishingTestExecutionListener@9cabd07, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2a32be8d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7942987, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5941a2ad, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5bf1e07, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3ac60eeb, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1c38d025]
+2023-02-08 01:14:53,946 INFO o.s.b.StartupInfoLogger [main] Starting ProductControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:53,947 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:54,131 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:54,166 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 33 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:54,331 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:54,397 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:54,481 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,481 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:54,482 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,482 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:54,482 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,482 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:54,483 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,483 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:54,483 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,483 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:54,484 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,484 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:54,484 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,484 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:54,485 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:54,485 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:55,432 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:55,433 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:55,660 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:55,939 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:55,940 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:55,940 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:55,951 INFO o.s.b.StartupInfoLogger [main] Started ProductControllerTest in 2.065 seconds (JVM running for 17.821)
+2023-02-08 01:14:56,014 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:56,014 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:56,014 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:56,046 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:56,046 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:56,047 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:56,061 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:56,061 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:56,061 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:56,072 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:56,073 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:56,073 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:56,088 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:56,088 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:56,089 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:56,101 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:56,102 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:56,153 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [edu.midlands.training.controllers.CustomerControllerTest], using SpringBootContextLoader
+2023-02-08 01:14:56,154 INFO o.s.t.c.s.AbstractContextLoader [main] Could not detect default resource locations for test class [edu.midlands.training.controllers.CustomerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-02-08 01:14:56,154 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [edu.midlands.training.controllers.CustomerControllerTest]: CustomerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-02-08 01:14:56,156 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration edu.midlands.training.AppRunner for test class edu.midlands.training.controllers.CustomerControllerTest
+2023-02-08 01:14:56,157 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-02-08 01:14:56,158 INFO o.s.t.c.s.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3ac23fe7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1a8b10dd, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5a96081a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@29f0e941, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2e6c69f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@40a923e6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2a153531, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4817bd3, org.springframework.test.context.event.EventPublishingTestExecutionListener@30e787e2, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@39d8240b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3a6732bc, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@35b799c0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3963d003, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@41e35358, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@42927b0a]
+2023-02-08 01:14:56,215 INFO o.s.b.StartupInfoLogger [main] Starting CustomerControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:56,217 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:56,385 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:56,435 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 48 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:56,577 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:56,632 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:56,698 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,698 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:56,699 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,699 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:56,699 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,699 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:56,700 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,700 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:56,701 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,701 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:56,701 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,701 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:56,701 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,702 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:56,703 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:56,703 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:56,781 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:56,782 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:57,044 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:57,351 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:57,351 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:57,352 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:57,363 INFO o.s.b.StartupInfoLogger [main] Started CustomerControllerTest in 1.203 seconds (JVM running for 19.233)
+2023-02-08 01:14:57,418 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:57,419 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:57,419 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:57,432 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:57,432 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:57,433 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:57,454 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:57,454 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:14:57,546 INFO o.s.b.StartupInfoLogger [main] Starting CustomerControllerTest using Java 19.0.1 on JustinPC with PID 35196 (started by Justin in C:\Users\Justin\Desktop\code\Mod 4\garden-center-api)
+2023-02-08 01:14:57,547 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 01:14:57,700 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 01:14:57,728 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 6 JPA repository interfaces.
+2023-02-08 01:14:57,856 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 01:14:57,924 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-02-08 01:14:58,000 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,001 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "customer" does not exist, skipping
+2023-02-08 01:14:58,002 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,002 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] relation "order" does not exist, skipping
+2023-02-08 01:14:58,003 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,003 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "user" does not exist, skipping
+2023-02-08 01:14:58,003 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,004 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "address" does not exist, skipping
+2023-02-08 01:14:58,004 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,004 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "customer" does not exist, skipping
+2023-02-08 01:14:58,005 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,005 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "item" does not exist, skipping
+2023-02-08 01:14:58,005 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,005 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "order" does not exist, skipping
+2023-02-08 01:14:58,006 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:14:58,006 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [main] table "product" does not exist, skipping
+2023-02-08 01:14:58,097 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 01:14:58,097 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:58,386 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 01:14:58,707 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:58,707 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:58,708 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2023-02-08 01:14:58,722 INFO o.s.b.StartupInfoLogger [main] Started CustomerControllerTest in 1.226 seconds (JVM running for 20.592)
+2023-02-08 01:14:58,784 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:58,784 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:58,784 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:58,800 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:58,800 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:58,800 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:58,810 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-02-08 01:14:58,811 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2023-02-08 01:14:58,811 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 0 ms
+2023-02-08 01:14:58,837 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:14:58,837 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [main] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:26:39,892 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 01:26:39,892 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [SpringApplicationShutdownHook] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-02-08 01:26:39,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] relation "customer" does not exist, skipping
+2023-02-08 01:26:39,895 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] relation "order" does not exist, skipping
+2023-02-08 01:26:39,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,896 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "user" does not exist, skipping
+2023-02-08 01:26:39,897 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,897 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "address" does not exist, skipping
+2023-02-08 01:26:39,898 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,898 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "customer" does not exist, skipping
+2023-02-08 01:26:39,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,899 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "item" does not exist, skipping
+2023-02-08 01:26:39,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "order" does not exist, skipping
+2023-02-08 01:26:39,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] SQL Warning Code: 0, SQLState: 00000
+2023-02-08 01:26:39,900 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [SpringApplicationShutdownHook] table "product" does not exist, skipping

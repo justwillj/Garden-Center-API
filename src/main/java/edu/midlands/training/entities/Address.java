@@ -15,6 +15,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * This contains all the proprieties and basic validation for our Address entities
+ */
 @Entity
 public class Address {
 
@@ -26,7 +29,9 @@ public class Address {
   @NotBlank(message = "city" + REQUIRED_FIELD)
   private String city;
   @NotBlank(message = "state" + REQUIRED_FIELD)
-  @Pattern(regexp = "AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY")
+  @Pattern(regexp = "AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA"
+      + "|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA"
+      + "|WA|WV|WI|WY")
   private String state;
   @NotNull(message = "zipCode" + REQUIRED_FIELD)
   @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$")

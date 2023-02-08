@@ -22,6 +22,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * This contains all the proprieties and basic validation for our Order entities
+ */
 @Entity
 @Table(name = "\"order\"")
 public class Order {

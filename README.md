@@ -9,6 +9,7 @@ the endpoints.
 ## PostMan Collection Link
 
 This is the link to the PostMan collection I used to test each of my endpoints.
+https://api.postman.com/collections/25273572-df14f91d-2c64-4d1a-bd5e-74dded2ab33d?access_key=PMAT-01GRQWW43R1BKQZEYDCPWY3E2T
 
 ## Testing
 
@@ -40,7 +41,7 @@ run the test with coverage follow these steps:
 
 1. Start the container.
 2. Look Under src\test\java\edu\midlands\training for the controllers package.
-3. Right click controllers and run tests in edu.midlands.training.controllers. 
+3. Right click controllers and run tests in edu.midlands.training.controllers.
 
 Integration tests cover payload, content type, and status code tests of all 2XX
 Code coverage can be viewed by right-clicking on the controller package and selecting Run with

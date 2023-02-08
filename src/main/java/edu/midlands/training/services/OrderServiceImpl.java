@@ -17,12 +17,16 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
+  private final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
   @Autowired
   private OrderRepository orderRepository;
@@ -38,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
 
   /**
-   * This method will take an order as an optional parameter. If the user is given then it will
+   * This method will take an order as an optional parameter. If the order is given then it will
    * create a query by example. If nothing is given then we will get all orders.
    *
    * @param order - any provided fields will be converted to an exact match AND queried
@@ -55,6 +59,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll(orderExample);
       }
     } catch (Exception e) {
+      logger.error("Could not get order" +e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -75,9 +80,11 @@ public class OrderServiceImpl implements OrderService {
         return order;
       }
     } catch (Exception e) {
+      logger.error("Could get not get order" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the Order
+    logger.error("Could not locate a Order with the id: " + id);
     throw new ResourceNotFound("Could not locate a Order with the id: " + id);
   }
 
@@ -112,18 +119,22 @@ public class OrderServiceImpl implements OrderService {
 
     }
     if (!customerTest) {
+      logger.error("This customer Id is not in the system!");
       throw new BadDataResponse("This customer Id is not in the system!");
     }
     if (!productTest) {
+      logger.error("This product Id is not in the system");
       throw new BadDataResponse("This product Id is not in the system");
     }
 
     if (order.getItems().getQuantity() < 0) {
+      logger.error("Quantity must be greater then 0!");
       throw new BadDataResponse("Quantity must be greater then 0!");
     }
     try {
       return orderRepository.save(order);
     } catch (Exception e) {
+      logger.error("Could not add order" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
 
@@ -139,14 +150,13 @@ public class OrderServiceImpl implements OrderService {
    */
   @Override
   public Order updateOrderById(Order order, Long id) {
-    // first, check to make sure the id passed matches the id in the Pet passed
+    // first, check to make sure the id passed matches the id in the Order passed
     if (!Objects.equals(order.getId(), id)) {
+      logger.error("Order ID must match the ID specified in the URL");
       throw new BadDataResponse("Order ID must match the ID specified in the URL");
     }
     BigDecimal rounded = order.getOrderTotal().setScale(2, RoundingMode.CEILING);
     order.setOrderTotal(rounded);
-    System.out.println(order);
-    System.out.println(order.getItems());
 
     boolean customerTest = false;
     boolean productTest = false;
@@ -164,13 +174,16 @@ public class OrderServiceImpl implements OrderService {
       }
     }
     if (!customerTest) {
+      logger.error("This customer Id is not in the system!");
       throw new BadDataResponse("This customer Id is not in the system!");
     }
     if (!productTest) {
+      logger.error("This product Id is not in the system");
       throw new BadDataResponse("This product Id is not in the system");
     }
 
     if (order.getItems().getQuantity() < 0) {
+      logger.error("Quantity must be greater then 0!");
       throw new BadDataResponse("Quantity must be greater then 0!");
     }
 
@@ -181,9 +194,11 @@ public class OrderServiceImpl implements OrderService {
       }
 
     } catch (Exception e) {
+      logger.error("Could not update order" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
-    // if we made it down to this pint, we did not find the User
+    // if we made it down to this pint, we did not find the Order
+    logger.error("Could not locate a Order with the id: " + id);
     throw new ResourceNotFound("Could not locate a Order with the id: " + id);
   }
 
@@ -201,10 +216,12 @@ public class OrderServiceImpl implements OrderService {
         return;
       }
     } catch (Exception e) {
+      logger.error("Could not delete order" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
 
-    // if we made it down to this pint, we did not find the Pet
+    // if we made it down to this pint, we did not find the Order
+    logger.error("Could not locate a Order with the id: " + id);
     throw new ResourceNotFound("Could not locate a Order with the id: " + id);
   }
 }

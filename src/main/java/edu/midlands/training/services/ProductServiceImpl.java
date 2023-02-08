@@ -13,6 +13,8 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+  private final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+
   @Autowired
   private ProductRepository productRepository;
 
 
+  /**
+   * This method will take a product as an optional parameter. If the product is given then it will create
+   * a query by example. If nothing is given then we will get all product.
+   *
+   * @param product - any provided fields will be converted to an exact match AND queried
+   * @return a list of products that match the query, if not supplied then all the products in the database
+   */
   @Override
   public List<Product> queryProducts(Product product) {
     try {
@@ -34,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(productExample);
       }
     } catch (Exception e) {
+      logger.error("Could not get products" +e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -54,9 +66,11 @@ public class ProductServiceImpl implements ProductService {
         return product;
       }
     } catch (Exception e) {
+      logger.error("Could not get product" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the Pet
+    logger.error("Could not locate a Product with the id:" + id);
     throw new ResourceNotFound("Could not locate a Product with the id: " + id);
   }
 
@@ -73,6 +87,7 @@ public class ProductServiceImpl implements ProductService {
 
     for (Product p: productRepository.findAll()){
       if (Objects.equals(p.getSku(), product.getSku())){
+        logger.error("This sku is already in use!");
         throw new ConflictData("This sku is already in use!");
       }
     }
@@ -80,6 +95,7 @@ public class ProductServiceImpl implements ProductService {
     try {
       return productRepository.save(product);
     } catch (Exception e) {
+      logger.error("Could not add product" +e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -97,19 +113,21 @@ public class ProductServiceImpl implements ProductService {
     BigDecimal rounded = product.getPrice().setScale(2, RoundingMode.CEILING);
     product.setPrice(rounded);
 
-      // first, check to make sure the id passed matches the id in the Pet passed
+      // first, check to make sure the id passed matches the id in the Product passed
       if (!product.getId().equals(id)) {
+        logger.error("Product ID must match the ID specified in the URL");
         throw new BadDataResponse("Product ID must match the ID specified in the URL");
       }
 
-      //If the id of the user we are updating and the endpoint id match, allows the user to keep its
-      //current email when updating
+      //If the id of the product we are updating and the endpoint id match, allows the product to keep its
+      //current sku when updating
       for (Product p: productRepository.findAll()){
         if (Objects.equals(product.getId(), p.getId()) && Objects.equals(product.getSku(), p.getSku())){
           return productRepository.save(product);
         }
-        //Checks to see if the email is already taken and if so throws an exceptions
+        //Checks to see if the sku is already taken and if so throws an exceptions
         if (Objects.equals(p.getSku(), product.getSku())){
+          logger.error("This sku is already in use!");
           throw new ConflictData("This sku is already in use!");
         }
       }
@@ -119,9 +137,11 @@ public class ProductServiceImpl implements ProductService {
           return productRepository.save(product);
         }
       } catch (Exception e) {
+        logger.error("Could not update product" + e.getMessage());
         throw new ServiceUnavailable(e);
       }
       // if we made it down to this pint, we did not find the Product
+      logger.error("Could not locate a Product with the id: " + id);
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 
@@ -138,10 +158,12 @@ public class ProductServiceImpl implements ProductService {
           return;
         }
       } catch (Exception e) {
+        logger.error("Could not delete product" + e.getMessage());
         throw new ServiceUnavailable(e);
       }
 
-      // if we made it down to this pint, we did not find the Pet
+      // if we made it down to this pint, we did not find the Product
+      logger.error("Could not locate a Product with the id: " + id);
       throw new ResourceNotFound("Could not locate a Product with the id: " + id);
     }
 

@@ -9,7 +9,7 @@ the endpoints.
 ## PostMan Collection Link
 
 This is the link to the PostMan collection I used to test each of my endpoints.
-https://api.postman.com/collections/25273572-df14f91d-2c64-4d1a-bd5e-74dded2ab33d?access_key=PMAT-01GRQWW43R1BKQZEYDCPWY3E2T
+https://api.postman.com/collections/25273572-38582da8-8d76-4a9e-803a-80d935e89471?access_key=PMAT-01GRR77NQZV8R505TCM8FSWCPJ
 
 ## Testing
 

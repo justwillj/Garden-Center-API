@@ -111,7 +111,7 @@ public class CustomerServiceImpl implements CustomerService {
    */
   @Override
   public Customer updateCustomerById(Customer customer, Long id) {
-    // first, check to make sure the id passed matches the id in the Pet passed
+    // first, check to make sure the id passed matches the id in the Customer passed
     if (!customer.getId().equals(id)) {
       logger.error("Customer ID must match the ID specified in the URL");
       throw new BadDataResponse("Customer ID must match the ID specified in the URL");

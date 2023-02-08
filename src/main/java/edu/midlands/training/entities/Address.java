@@ -21,15 +21,15 @@ public class Address {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @NotBlank(message = "street"+ REQUIRED_FIELD)
+  @NotBlank(message = "street" + REQUIRED_FIELD)
   private String street;
-  @NotBlank(message = "city"+ REQUIRED_FIELD)
+  @NotBlank(message = "city" + REQUIRED_FIELD)
   private String city;
-  @NotBlank(message = "state"+ REQUIRED_FIELD)
+  @NotBlank(message = "state" + REQUIRED_FIELD)
   @Pattern(regexp = "AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY")
   private String state;
-  @NotNull(message = "zipCode"+ REQUIRED_FIELD)
-  @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$" )
+  @NotNull(message = "zipCode" + REQUIRED_FIELD)
+  @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$")
   private String zipCode;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
@@ -107,7 +107,7 @@ public class Address {
   }
 
   @JsonIgnore
-  public  boolean isEmpty() {
+  public boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(street) &&
         Objects.isNull(city) &&

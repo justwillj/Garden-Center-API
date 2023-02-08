@@ -18,11 +18,12 @@ import javax.validation.constraints.Pattern.Flag;
 
 @Entity
 public class Customer {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "name"+ REQUIRED_FIELD)
+  @NotBlank(message = "name" + REQUIRED_FIELD)
   private String name;
   @NotBlank(message = "email" + REQUIRED_FIELD)
   @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Flag.CASE_INSENSITIVE)
@@ -84,8 +85,9 @@ public class Customer {
         ", address=" + address +
         '}';
   }
+
   @JsonIgnore
-  public  boolean isEmpty() {
+  public boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(name) &&
         Objects.isNull(email) &&

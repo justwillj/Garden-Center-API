@@ -40,7 +40,8 @@ public class ProductController {
   private ProductService productService;
 
   /**
-   * give you all the products if you pass a null user or user matching an example with non-null product
+   * give you all the products if you pass a null user or user matching an example with non-null
+   * product
    *
    * @param product object which can have null or non-null fields, returns status 200
    * @return List of products
@@ -82,7 +83,7 @@ public class ProductController {
   /**
    * Update product by id
    *
-   * @param id  the id of the product to be updated from the path variable
+   * @param id      the id of the product to be updated from the path variable
    * @param product the product's new information from the request body
    * @return the product if input and data is correct
    */
@@ -91,7 +92,7 @@ public class ProductController {
       @PathVariable Long id, @Valid @RequestBody Product product) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(productService.updateProductById(product,id), HttpStatus.OK);
+    return new ResponseEntity<>(productService.updateProductById(product, id), HttpStatus.OK);
   }
 
   /**

@@ -25,7 +25,7 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "sku"+ REQUIRED_FIELD)
+  @NotBlank(message = "sku" + REQUIRED_FIELD)
   private String sku;
 
   @NotBlank(message = "type"+ REQUIRED_FIELD)

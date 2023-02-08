@@ -8,7 +8,8 @@ public class ConflictData extends RuntimeException {
 
   public ConflictData() {
   }
-  public ConflictData (String message) {
+
+  public ConflictData(String message) {
     super(message);
   }
 }

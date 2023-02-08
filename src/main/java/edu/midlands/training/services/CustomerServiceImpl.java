@@ -44,7 +44,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findAll();
       } else {
         Example<Customer> customersExample = Example.of(customer);
-        // Example<Address> addressExample = Example.of(address);
         return customerRepository.findAll(customersExample);
       }
     } catch (Exception e) {

@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
    * a query by example. If nothing is given then we will get all users.
    *
    * @param user - any provided fields will be converted to an exact match AND queried
-   * @return a list of users that match the query, if not supplied then all the users in the database
+   * @return a list of users that match the query, if not supplied then all the users in the
+   * database
    */
   @Override
   public List<User> queryUsers(User user) {
@@ -47,12 +48,12 @@ public class UserServiceImpl implements UserService {
     }
   }
 
-/**
- * Lookup a User by its id.
- *
- * @param id - the id to lookup
- * @return the user that matches the id
- */
+  /**
+   * Lookup a User by its id.
+   *
+   * @param id - the id to lookup
+   * @return the user that matches the id
+   */
   @Override
   public User getUser(Long id) {
     try {
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the User
-    logger.error("Could not locate the user with the id"+ id);
+    logger.error("Could not locate the user with the id" + id);
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 
@@ -81,37 +82,37 @@ public class UserServiceImpl implements UserService {
     String[] employee = new String[]{"EMPLOYEE"};
     String[] admin = new String[]{"ADMIN"};
 
-    if (!Arrays.equals(user.getRoles(), employee)){
-      if (!Arrays.equals(user.getRoles(), admin)){
+    if (!Arrays.equals(user.getRoles(), employee)) {
+      if (!Arrays.equals(user.getRoles(), admin)) {
         logger.error("Please use a valid role!");
         throw new BadDataResponse("Please use a valid role!");
       }
     }
-      //Checks to see if the email is already taken and if so throws an exceptions
-      for (User u : userRepository.findAll()) {
-        if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
-          logger.error("This email is already in use!");
-          throw new ConflictData("This email is already in use!");
-        }
+    //Checks to see if the email is already taken and if so throws an exceptions
+    for (User u : userRepository.findAll()) {
+      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
+        logger.error("This email is already in use!");
+        throw new ConflictData("This email is already in use!");
       }
-      try {
-        return userRepository.save(user);
-      } catch (Exception e) {
-        logger.error("Could not add the user" + e.getMessage());
-        throw new ServiceUnavailable(e);
-      }
+    }
+    try {
+      return userRepository.save(user);
+    } catch (Exception e) {
+      logger.error("Could not add the user" + e.getMessage());
+      throw new ServiceUnavailable(e);
+    }
 
   }
 
   /**
    * Update an existing User in the database.
    *
-   * @param id  - the id of the user to update.
+   * @param id   - the id of the user to update.
    * @param user - the User information to update.
    * @return the updated user if done correctly
    */
   @Override
-  public User updateUserById(User user,Long id) {
+  public User updateUserById(User user, Long id) {
     // first, check to make sure the id passed matches the id in the User passed
     if (!user.getId().equals(id)) {
       logger.error("User ID must match the ID specified in the URL");
@@ -120,8 +121,8 @@ public class UserServiceImpl implements UserService {
     String[] employee = new String[]{"EMPLOYEE"};
     String[] admin = new String[]{"ADMIN"};
 
-    if (!Arrays.equals(user.getRoles(), employee)){
-      if (!Arrays.equals(user.getRoles(), admin)){
+    if (!Arrays.equals(user.getRoles(), employee)) {
+      if (!Arrays.equals(user.getRoles(), admin)) {
         logger.error("Please use a valid role!");
         throw new BadDataResponse("Please use a valid role!");
       }
@@ -129,12 +130,13 @@ public class UserServiceImpl implements UserService {
 
     //If the id of the user we are updating and the endpoint id match, allows the user to keep its
     //current email when updating
-    for (User u: userRepository.findAll()){
-      if (Objects.equals(user.getId(), u.getId()) && Objects.equals(user.getEmail(), u.getEmail())){
+    for (User u : userRepository.findAll()) {
+      if (Objects.equals(user.getId(), u.getId()) && Objects.equals(user.getEmail(),
+          u.getEmail())) {
         return userRepository.save(user);
       }
       //Checks to see if the email is already taken and if so throws an exceptions
-      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())){
+      if (Objects.equals(u.getEmail().toLowerCase(), user.getEmail().toLowerCase())) {
         logger.error("This email is already in use!");
         throw new ConflictData("This email is already in use!");
       }
@@ -150,7 +152,7 @@ public class UserServiceImpl implements UserService {
       throw new ServiceUnavailable(e);
     }
     // if we made it down to this pint, we did not find the User
-    logger.error("Could not locate a User with the id:"+ id);
+    logger.error("Could not locate a User with the id:" + id);
     throw new ResourceNotFound("Could not locate a User with the id: " + id);
   }
 

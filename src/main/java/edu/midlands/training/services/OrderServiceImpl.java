@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll(orderExample);
       }
     } catch (Exception e) {
-      logger.error("Could not get order" +e.getMessage());
+      logger.error("Could not get order" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }

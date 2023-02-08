@@ -38,9 +38,10 @@ run the test with coverage follow these steps:
 
 ## Running Integration Tests
 
-Start the container.
-Look Under src\test\java\edu\midlands\training for the controllers package.
-Right click controllers and run tests in edu.midlands.training.controllers.
+1. Start the container.
+2. Look Under src\test\java\edu\midlands\training for the controllers package.
+3. Right click controllers and run tests in edu.midlands.training.controllers. 
+
 Integration tests cover payload, content type, and status code tests of all 2XX
 Code coverage can be viewed by right-clicking on the controller package and selecting Run with
 Coverage.
@@ -59,7 +60,7 @@ The DataLoader class in the data package will load a few examples of each entity
 database after the service starts up.
 
 You will need to also have IntelliJ installed and will need to import this as a maven project for
-everything to ru.
+everything to run.
 
 ## Usage
 

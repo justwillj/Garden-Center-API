@@ -24,33 +24,34 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Entity
 @Table(name = "\"User\"")
 public class User {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "name"+ REQUIRED_FIELD)
-  @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input")
+  @NotBlank(message = "name" + REQUIRED_FIELD)
+  @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid Input")
   private String name;
 
-  @NotBlank(message = "title"+ REQUIRED_FIELD)
+  @NotBlank(message = "title" + REQUIRED_FIELD)
   private String title;
 
-  @NotEmpty(message = "roles"+ REQUIRED_FIELD)
-  private String [] roles;
+  @NotEmpty(message = "roles" + REQUIRED_FIELD)
+  private String[] roles;
 
-  @NotBlank(message = "email"+ REQUIRED_FIELD)
+  @NotBlank(message = "email" + REQUIRED_FIELD)
   @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Flag.CASE_INSENSITIVE)
   private String email;
 
   @Length(min = 8)
-  @NotBlank(message = "password"+ REQUIRED_FIELD)
+  @NotBlank(message = "password" + REQUIRED_FIELD)
   private String password;
 
 
   public User() {
   }
 
-  public User(String name, String title, String [] roles, String email, String password) {
+  public User(String name, String title, String[] roles, String email, String password) {
     this.name = name.trim();
     this.title = title.trim();
     this.roles = roles;
@@ -82,7 +83,7 @@ public class User {
     this.title = title.trim();
   }
 
-  public String [] getRoles() {
+  public String[] getRoles() {
     return roles;
   }
 
@@ -119,7 +120,7 @@ public class User {
   }
 
   @JsonIgnore
-  public  boolean isEmpty() {
+  public boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(name) &&
         Objects.isNull(title) &&

@@ -30,13 +30,13 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull(message = "customerId"+ REQUIRED_FIELD)
+  @NotNull(message = "customerId" + REQUIRED_FIELD)
   private Long customerId;
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
-  @NotNull(message = "date"+ REQUIRED_FIELD)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+  @NotNull(message = "date" + REQUIRED_FIELD)
   private LocalDate date;
-  @NotNull(message = "orderTotal"+ REQUIRED_FIELD)
-  @DecimalMin(value = "0.00",message = "total must be a positive number!")
+  @NotNull(message = "orderTotal" + REQUIRED_FIELD)
+  @DecimalMin(value = "0.00", message = "total must be a positive number!")
   private BigDecimal orderTotal;
 
   @ManyToOne(fetch = FetchType.EAGER)
@@ -106,7 +106,7 @@ public class Order {
   }
 
   @JsonIgnore
-  public  boolean isEmpty() {
+  public boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(customerId) &&
         Objects.isNull(date) &&

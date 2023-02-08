@@ -83,7 +83,7 @@ public class UserController {
   /**
    * Update user by id
    *
-   * @param id  the id of the user to be updated from the path variable
+   * @param id   the id of the user to be updated from the path variable
    * @param user the user's new information from the request body
    * @return the user if input and data is correct
    */
@@ -92,7 +92,7 @@ public class UserController {
       @PathVariable Long id, @Valid @RequestBody User user) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(userService.updateUserById(user,id), HttpStatus.OK);
+    return new ResponseEntity<>(userService.updateUserById(user, id), HttpStatus.OK);
   }
 
   /**

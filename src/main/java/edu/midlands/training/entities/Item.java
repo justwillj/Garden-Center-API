@@ -23,10 +23,10 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull(message = "productId"+ REQUIRED_FIELD)
+  @NotNull(message = "productId" + REQUIRED_FIELD)
   private Long productId;
-  @NotNull(message = "quantity"+ REQUIRED_FIELD)
-  @DecimalMin(value = "0.00",message = "quantity must be a positive number!")
+  @NotNull(message = "quantity" + REQUIRED_FIELD)
+  @DecimalMin(value = "0.00", message = "quantity must be a positive number!")
   private Integer quantity;
 
   @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
@@ -85,7 +85,7 @@ public class Item {
   }
 
   @JsonIgnore
-  public  boolean isEmpty() {
+  public boolean isEmpty() {
     return Objects.isNull(id) &&
         Objects.isNull(productId) &&
         Objects.isNull(quantity) &&

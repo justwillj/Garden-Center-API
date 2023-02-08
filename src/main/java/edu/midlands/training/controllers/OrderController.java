@@ -44,7 +44,8 @@ public class OrderController {
   private OrderService orderService;
 
   /**
-   * give you all the orders if you pass a null order or order matching an example with non-null product
+   * give you all the orders if you pass a null order or order matching an example with non-null
+   * product
    *
    * @param order object which can have null or non-null fields, returns status 200
    * @return List of orders
@@ -87,7 +88,7 @@ public class OrderController {
   /**
    * Update order by id
    *
-   * @param id  the id of the order to be updated from the path variable
+   * @param id    the id of the order to be updated from the path variable
    * @param order the order's new information from the request body
    * @return the order if input and data is correct
    */
@@ -96,7 +97,7 @@ public class OrderController {
       @PathVariable Long id, @Valid @RequestBody Order order) {
     logger.info(new Date() + LOGGER_PUT_REQUEST_RECEIVED + id);
 
-    return new ResponseEntity<>(orderService.updateOrderById(order,id), HttpStatus.OK);
+    return new ResponseEntity<>(orderService.updateOrderById(order, id), HttpStatus.OK);
   }
 
   /**

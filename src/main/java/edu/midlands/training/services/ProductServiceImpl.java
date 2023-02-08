@@ -29,11 +29,12 @@ public class ProductServiceImpl implements ProductService {
 
 
   /**
-   * This method will take a product as an optional parameter. If the product is given then it will create
-   * a query by example. If nothing is given then we will get all product.
+   * This method will take a product as an optional parameter. If the product is given then it will
+   * create a query by example. If nothing is given then we will get all product.
    *
    * @param product - any provided fields will be converted to an exact match AND queried
-   * @return a list of products that match the query, if not supplied then all the products in the database
+   * @return a list of products that match the query, if not supplied then all the products in the
+   * database
    */
   @Override
   public List<Product> queryProducts(Product product) {
@@ -45,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(productExample);
       }
     } catch (Exception e) {
-      logger.error("Could not get products" +e.getMessage());
+      logger.error("Could not get products" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -85,8 +86,8 @@ public class ProductServiceImpl implements ProductService {
     BigDecimal rounded = product.getPrice().setScale(2, RoundingMode.CEILING);
     product.setPrice(rounded);
 
-    for (Product p: productRepository.findAll()){
-      if (Objects.equals(p.getSku(), product.getSku())){
+    for (Product p : productRepository.findAll()) {
+      if (Objects.equals(p.getSku(), product.getSku())) {
         logger.error("This sku is already in use!");
         throw new ConflictData("This sku is already in use!");
       }
@@ -95,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
     try {
       return productRepository.save(product);
     } catch (Exception e) {
-      logger.error("Could not add product" +e.getMessage());
+      logger.error("Could not add product" + e.getMessage());
       throw new ServiceUnavailable(e);
     }
   }
@@ -103,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
   /**
    * Update an existing Product in the database.
    *
-   * @param id  - the id of the product to update.
+   * @param id      - the id of the product to update.
    * @param product - the Product information to update.
    * @return the updated product if done correctly
    */
@@ -113,37 +114,38 @@ public class ProductServiceImpl implements ProductService {
     BigDecimal rounded = product.getPrice().setScale(2, RoundingMode.CEILING);
     product.setPrice(rounded);
 
-      // first, check to make sure the id passed matches the id in the Product passed
-      if (!product.getId().equals(id)) {
-        logger.error("Product ID must match the ID specified in the URL");
-        throw new BadDataResponse("Product ID must match the ID specified in the URL");
-      }
-
-      //If the id of the product we are updating and the endpoint id match, allows the product to keep its
-      //current sku when updating
-      for (Product p: productRepository.findAll()){
-        if (Objects.equals(product.getId(), p.getId()) && Objects.equals(product.getSku(), p.getSku())){
-          return productRepository.save(product);
-        }
-        //Checks to see if the sku is already taken and if so throws an exceptions
-        if (Objects.equals(p.getSku(), product.getSku())){
-          logger.error("This sku is already in use!");
-          throw new ConflictData("This sku is already in use!");
-        }
-      }
-      try {
-        Product productFromDb = productRepository.findById(id).orElse(null);
-        if (productFromDb != null) {
-          return productRepository.save(product);
-        }
-      } catch (Exception e) {
-        logger.error("Could not update product" + e.getMessage());
-        throw new ServiceUnavailable(e);
-      }
-      // if we made it down to this pint, we did not find the Product
-      logger.error("Could not locate a Product with the id: " + id);
-      throw new ResourceNotFound("Could not locate a Product with the id: " + id);
+    // first, check to make sure the id passed matches the id in the Product passed
+    if (!product.getId().equals(id)) {
+      logger.error("Product ID must match the ID specified in the URL");
+      throw new BadDataResponse("Product ID must match the ID specified in the URL");
     }
+
+    //If the id of the product we are updating and the endpoint id match, allows the product to keep its
+    //current sku when updating
+    for (Product p : productRepository.findAll()) {
+      if (Objects.equals(product.getId(), p.getId()) && Objects.equals(product.getSku(),
+          p.getSku())) {
+        return productRepository.save(product);
+      }
+      //Checks to see if the sku is already taken and if so throws an exceptions
+      if (Objects.equals(p.getSku(), product.getSku())) {
+        logger.error("This sku is already in use!");
+        throw new ConflictData("This sku is already in use!");
+      }
+    }
+    try {
+      Product productFromDb = productRepository.findById(id).orElse(null);
+      if (productFromDb != null) {
+        return productRepository.save(product);
+      }
+    } catch (Exception e) {
+      logger.error("Could not update product" + e.getMessage());
+      throw new ServiceUnavailable(e);
+    }
+    // if we made it down to this pint, we did not find the Product
+    logger.error("Could not locate a Product with the id: " + id);
+    throw new ResourceNotFound("Could not locate a Product with the id: " + id);
+  }
 
   /**
    * Delete a Product from the database.
@@ -152,19 +154,19 @@ public class ProductServiceImpl implements ProductService {
    */
   @Override
   public void deleteProduct(Long id) {
-      try {
-        if (productRepository.existsById(id)) {
-          productRepository.deleteById(id);
-          return;
-        }
-      } catch (Exception e) {
-        logger.error("Could not delete product" + e.getMessage());
-        throw new ServiceUnavailable(e);
+    try {
+      if (productRepository.existsById(id)) {
+        productRepository.deleteById(id);
+        return;
       }
-
-      // if we made it down to this pint, we did not find the Product
-      logger.error("Could not locate a Product with the id: " + id);
-      throw new ResourceNotFound("Could not locate a Product with the id: " + id);
+    } catch (Exception e) {
+      logger.error("Could not delete product" + e.getMessage());
+      throw new ServiceUnavailable(e);
     }
+
+    // if we made it down to this pint, we did not find the Product
+    logger.error("Could not locate a Product with the id: " + id);
+    throw new ResourceNotFound("Could not locate a Product with the id: " + id);
+  }
 
 }
